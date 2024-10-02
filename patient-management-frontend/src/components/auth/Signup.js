@@ -57,7 +57,11 @@ function Signup() {
         {error && <p className="error">{error}</p>}
         <button type="submit">Sign Up</button>
       </form>
+            <label htmlFor="">Name</label>
+      <input type="text" name="" id="" />
     </div>
+
+    
   );
 }
 
