@@ -29,6 +29,7 @@ function Signup() {
   };
 
   return (
+<<<<<<< HEAD
     <div className="flex justify-center items-center h-screen bg-gray-50">
       <div className="bg-white shadow-md rounded-lg w-full max-w-lg p-8">
         <h2 className="text-3xl font-semibold mb-6 text-center text-indigo-900">Registration</h2>
@@ -176,7 +177,48 @@ function Signup() {
         {/* Add your image or design here */}
         <img src="path_to_image" alt="Hospital Design" className="w-full h-full object-cover" />
       </div>
+=======
+    <div className="signup-container">
+      <h2>Sign Up</h2>
+      <form onSubmit={handleSignup}>
+        <div className="form-group">
+          <label>Name:</label>
+          <input
+            type="text"
+            value={userData.name}
+            onChange={(e) => setUserData({ ...userData, name: e.target.value })}
+            required
+          />
+        </div>
+        <div className="form-group">
+          <label>Email:</label>
+          <input
+            type="email"
+            value={userData.email}
+            onChange={(e) => setUserData({ ...userData, email: e.target.value })}
+            required
+          />
+        </div>
+        <div className="form-group">
+          <label>Password:</label>
+          <input
+            type="password"
+            value={userData.password}
+            onChange={(e) =>
+              setUserData({ ...userData, password: e.target.value })
+            }
+            required
+          />
+        </div>
+        {error && <p className="error">{error}</p>}
+        <button type="submit">Sign Up</button>
+      </form>
+            <label htmlFor="">Name</label>
+      <input type="text" name="" id="" />
+>>>>>>> d01c82be18dd9a4e391e91a8ae2d8d2ac8a0fd4b
     </div>
+
+    
   );
 }
 
