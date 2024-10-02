@@ -46,6 +46,7 @@ function Login() {
         </div>
         {error && <p className="error">{error}</p>}
         <button type="submit">Login</button>
+        <button type="submit">Login</button>
       </form>
     </div>
   );
