@@ -11,7 +11,7 @@ import Dashboard from './pages/Dashboard';
 function App() {
   return (
     <Router>
-      <Navbar /> {/* Include Navbar on all pages */}
+      {/* <Navbar /> Include Navbar on all pages */}
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
