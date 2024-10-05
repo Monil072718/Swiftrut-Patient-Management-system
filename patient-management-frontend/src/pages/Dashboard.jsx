@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { AppBar, Toolbar, IconButton, InputBase, Badge, Avatar, List, ListItem, ListItemText, ListItemIcon, Drawer, Button, FormControl, Select, MenuItem, Popover, Typography,  } from '@mui/material';
+import { AppBar, Toolbar, IconButton, InputBase, Badge, Avatar, List, ListItem, ListItemText, ListItemIcon, Drawer, Button, FormControl, Select, MenuItem, Popover, Typography, } from '@mui/material';
 import { Search as SearchIcon, Notifications as NotificationsIcon, Logout as LogoutIcon, Dashboard as DashboardIcon, Person as DoctorIcon, Group as PatientIcon, Payment as PaymentIcon, BarChart as AnalyticsIcon } from '@mui/icons-material';
 import { useNavigate } from 'react-router-dom';
 
@@ -17,12 +17,12 @@ function Dashboard() {
 
   const open = Boolean(anchorEl);
 
-  const handleProfileClick = (event) => {
-    setAnchorEl(event.currentTarget); // Set anchor for the Popover
-  };
+  // const handleProfileClick = (event) => {
+  //   setAnchorEl(event.currentTarget); 
+  // };
 
   const handleClose = () => {
-    setAnchorEl(null); // Close the Popover
+    setAnchorEl(null);
   };
 
   return (
@@ -55,8 +55,8 @@ function Dashboard() {
               sx={{
                 cursor: 'pointer',
                 '&:hover': {
-                  backgroundColor: '#E5E7EB', 
-                  color: '#000', 
+                  backgroundColor: '#E5E7EB',
+                  color: '#000',
                 },
               }}
             >
@@ -102,9 +102,7 @@ function Dashboard() {
               <h1 className="text-3xl text-black font-bold">Good Morning! Martin</h1>
               <p className="mt-2 text-customGray">Hope you have a good day</p>
             </div>
-
-            <div className="flex items-center"></div>
-
+            {/* <div className="flex items-center"></div> */}
             <div className="flex items-center">
               <div className="flex items-center bg-gray-200 rounded-full mr-4">
                 <InputBase
