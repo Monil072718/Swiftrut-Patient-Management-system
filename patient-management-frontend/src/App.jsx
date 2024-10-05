@@ -16,7 +16,7 @@ import TermsCondition from './pages/Admin/TermsCondition';
 function App() {
   return (
     <Router>
-      <Navbar /> {/* Include Navbar on all pages */}
+      {/* <Navbar /> Include Navbar on all pages */}
       <Routes>
         <Route path="/" element={<Dashboard />} />
         <Route path="/login" element={<Login />} />
