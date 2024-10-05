@@ -86,7 +86,7 @@ const Signup = () => {
   return (
     <div className="flex h-screen">
       {/* Left Section: Form */}
-      <div className="w-full md:w-1/2 flex items-center justify-center bg-gray-100">
+      <div className="w-full md:w-1/2 flex items-center justify-center bg-gray-100 px-8"> {/* Added padding only to the form */}
         <Box className="bg-white p-8 rounded-2xl shadow-lg w-full w-[600px]">
           <Typography variant="h4" className="mb-4 font-lato font-semibold">
             Registration
@@ -220,6 +220,7 @@ const Signup = () => {
               </TextField>
             </div>
 
+            {/* Password and Confirm Password */}
             <div className="mb-4">
               <Typography variant="body1" className="mb-2 font-lato">Password</Typography>
               <TextField
@@ -241,7 +242,6 @@ const Signup = () => {
               />
             </div>
 
-            {/* Confirm Password */}
             <div className="mb-4">
               <Typography variant="body1" className="mb-2 font-lato">Confirm Password</Typography>
               <TextField
@@ -262,7 +262,6 @@ const Signup = () => {
                 }}
               />
             </div>
-
 
             {/* Terms & Conditions */}
             <div className="mb-4">
@@ -296,6 +295,7 @@ const Signup = () => {
           </form>
         </Box>
       </div>
+
 
       {/* Right Section: Image */}
       <div className="hidden md:flex w-full md:w-1/2 items-center justify-center relative">

@@ -6,19 +6,25 @@ import Signup from './components/auth/Signup';
 import ForgotPassword from './components/auth/ForgotPassword';
 import Home from './pages/Home';
 import Dashboard from './pages/Dashboard';
-// import './styles/Navbar.css'; // Import the Navbar CSS
+import DoctorAppointment from './components/Docoter/DoctorAppointment';
 
 function App() {
   return (
     <Router>
-      {/* <Navbar /> Include Navbar on all pages */}
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<Signup />} />
-        <Route path="/forgot-password" element={<ForgotPassword />} />
-        <Route path="/dashboard" element={<Dashboard />} />
-      </Routes>
+      {/* Uncomment Navbar if you want it on all pages */}
+      {/* <Navbar /> */}
+
+      <div className="min-h-screen flex flex-col">
+        <Routes>
+          {/* Define all routes */}
+          <Route path="/" element={<Home />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Signup />} />
+          <Route path="/forgot-password" element={<ForgotPassword />} />
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/appointment-management" element={<DoctorAppointment  />} />
+        </Routes>
+      </div>
     </Router>
   );
 }

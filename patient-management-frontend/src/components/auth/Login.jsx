@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
 import { Box, Typography, TextField, Checkbox, FormControlLabel, Button } from '@mui/material';
+import logo from "../../assets/Images/logo.png";
 
 function Login() {
   const [emailOrPhone, setEmailOrPhone] = useState('');
@@ -38,7 +39,7 @@ function Login() {
   return (
     <div className="flex h-screen">
       {/* Left Section: Form */}
-      <div className="w-full md:w-1/2 flex items-center justify-center bg-gray-100">
+      <div className="w-full md:w-1/2 flex items-center justify-center bg-gray-100 px-20"> {/* Added padding to the form container */}
         <Box className="bg-white p-8 rounded-2xl shadow-lg w-full w-[600px]">
           <Typography variant="h4" className="mb-4 font-lato font-semibold">
             Login
@@ -46,7 +47,7 @@ function Login() {
           {error && <Typography color="error" className="mb-4">{error}</Typography>}
           <form onSubmit={handleLogin}>
             {/* Email or Phone */}
-            <div className="mb-4">
+            <div className="mb-4 mt-4">
               <TextField
                 label="Email or Phone"
                 name="emailOrPhone"
@@ -60,18 +61,24 @@ function Login() {
             </div>
 
             {/* Password */}
-            <div className="mb-4">
-              <TextField
-                label="Password"
-                name="password"
-                type="password"
-                variant="outlined"
-                fullWidth
+            <div className="relative mb-6">
+              <input
+                type="text"
+                id="emailOrPhone"
+                name="emailOrPhone"
+                className={`block w-full px-4 py-2 text-sm text-gray-900 bg-transparent border rounded-lg appearance-none focus:outline-none focus:ring-0 peer "border-red-500" : "border-gray-300"
+    }`}
+                placeholder="Password"
+                value=""
+                onChange=""
                 required
-                value={password}
-                onChange={handleChange}
-                placeholder="Enter your password"
               />
+              <label
+                htmlFor="password"
+                className="absolute left-3 -top-3 px-1 bg-white text-sm font-medium text-gray-500 transition-all duration-200 transform scale-75 origin-[0] peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 "
+              >
+                Password <span className="text-red-500">*</span>
+              </label>
             </div>
 
             {/* Remember Me and Forgot Password */}
@@ -81,12 +88,12 @@ function Login() {
                   <Checkbox
                     checked={rememberMe}
                     onChange={handleChange}
-                    name="rememberMe"
+                    name="rememberMe" className='rounded'
                   />
                 }
                 label="Remember Me"
               />
-              <Link to="/forgot-password" variant="body2">
+              <Link to="/forgot-password" variant="body2" className='text-center mt-2 text-blue-600 '>
                 Forgot Password?
               </Link>
             </div>
@@ -103,7 +110,7 @@ function Login() {
             </Button>
 
             {/* Don't have an account? */}
-            <Typography className="text-center">
+            <Typography className="text-center pt-4"> {/* Added margin-top class */}
               Don’t have an account?{' '}
               <Link to="/signup" className="text-blue-600">
                 Register
@@ -112,6 +119,7 @@ function Login() {
           </form>
         </Box>
       </div>
+
 
 
       {/* Right Section: Image */}
