@@ -87,12 +87,12 @@ const Signup = () => {
     <div className="flex h-screen">
       {/* Left Section: Form */}
       <div className="w-full md:w-1/2 flex items-center justify-center bg-gray-100">
-        <Box className="bg-white p-8 rounded-2xl shadow-lg w-full w-[600px]">
+        <Box className="bg-white p-8 rounded-2xl shadow-lg w-1/2">
           <Typography variant="h4" className="mb-4 font-lato font-semibold">
             Registration
           </Typography>
           {error && <Typography color="error" className="mb-4">{error}</Typography>}
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmit} className='mt-4'>
             {/* First Name and Last Name */}
             <div className="flex flex-col md:flex-row md:space-x-4 mb-4">
               <div className="flex-1">
@@ -344,12 +344,13 @@ const Signup = () => {
           alt="Registration"
           className="absolute right-0 top-0 object-contain"
         />
-        <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 p-4 text-center text-white">
-          <img
-            src="assets/img/Hospital_text.png"
-            alt="Registration"
-            className="mx-auto w-3/4 h-auto"
-          />
+        <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 p-4 text-center text-black">
+          <h1 className="text-4xl font-bold">Hospital</h1>
+          <p className="mt-2 text-base text-costumDarkGray text-bold">You can stay at your Hospital and contact with your facility</p>
+          <div className="flex justify-center mt-4">
+            <div className="w-16 h-1 bg-blue-500 rounded-full " /> {/* Rounded line */}
+            <div className="w-4 h-4 bg-blue-500 rounded-full ml-2" /> {/* Small circle */}
+          </div>
         </div>
       </div>
 

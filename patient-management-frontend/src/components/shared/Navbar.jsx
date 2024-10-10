@@ -14,18 +14,11 @@ function Navbar() {
   return (
     <nav className="navbar">
       <div className="navbar-container">
-        <Link to="/" className="navbar-logo">
-          Patient Management
-        </Link>
+        
         <ul className="navbar-links">
           {!isAuthenticated && (
             <>
-              <li>
-                <Link to="/login">Login</Link>
-              </li>
-              <li>
-                <Link to="/signup">Sign Up</Link>
-              </li>
+              
             </>
           )}
           {isAuthenticated && (
