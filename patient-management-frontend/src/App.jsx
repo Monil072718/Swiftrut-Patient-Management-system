@@ -4,20 +4,28 @@ import Navbar from './components/shared/Navbar';
 import Login from './components/Admin/auth/Login';
 import Signup from './components/Admin/auth/Signup';
 import ForgotPassword from './components/Admin/auth/ForgotPassword';
-import Home from './pages/Home';
 import Dashboard from './pages/Dashboard';
 import EditProfile from './pages/Admin/EditProfile';
 import ChangePassword from './pages/Admin/ChangePassword';
 import Profile from './pages/Admin/Profile';
 import PrivacyPolicy from './pages/Admin/PrivacyPolicy';
 import TermsCondition from './pages/Admin/TermsCondition';
-// import './styles/Navbar.css'; // Import the Navbar CSS
+import DoctorAppointment from './components/Docoter/DoctorAppointment';
+import SearchResult from './pages/Admin/SearchResult';
+import DoctorManagement from './pages/Admin/DoctorManagement';
+// import DoctorOnsite from './pages/Admin/DoctorOnSite';
+import DoctorOnSite from './pages/Admin/DoctorOnSite';
+import AddNewDoctor from './pages/Admin/AddNewDoctor';
+import Invoice from './pages/Admin/Invoice';
 
 function App() {
   return (
     <Router>
-      {/* <Navbar /> Include Navbar on all pages */}
+      {/* <Navbar />  */}
       <Routes>
+
+        {/* Admin */}
+
         <Route path="/" element={<Dashboard />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
@@ -27,6 +35,12 @@ function App() {
         <Route path="/change-password" element={<ChangePassword />} />  
         <Route path="/terms-condition" element={<TermsCondition />} />
         <Route path='/privacy-policy' element={<PrivacyPolicy />}/>
+        {/* <Route path="/appointment" element={<DoctorAppointment />} /> */}
+        <Route path="/search" element={<SearchResult />} />
+        <Route path="/doctormanagement" element={<DoctorManagement />} />
+        <Route path="/onsite" element={<DoctorOnSite />} />
+        <Route path="/addnewdoctor" element={<AddNewDoctor />} />
+        <Route path="/invoice" element={<Invoice />} />
       </Routes>
     </Router>
   );

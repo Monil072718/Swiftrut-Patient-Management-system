@@ -9,7 +9,7 @@ const DoctorAppointment = () => {
         <img
           src="assets/img/Logo.png"
           alt="Registration"
-          className=""
+          className="mb-4"
         />
         <nav className="space-y-4">
           <a href="#" className="flex items-center p-2 text-blue-600 bg-blue-50 rounded-md">
