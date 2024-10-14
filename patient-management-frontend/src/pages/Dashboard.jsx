@@ -2,24 +2,13 @@ import React, { useState } from 'react';
 import { AppBar, Toolbar, IconButton, InputBase, Badge, Avatar, List, ListItem, ListItemText, ListItemIcon, Drawer, Button, FormControl, Select, MenuItem, Popover, Typography, } from '@mui/material';
 import { Search as SearchIcon, Notifications as NotificationsIcon, Logout as LogoutIcon, Dashboard as DashboardIcon, Person as DoctorIcon, Group as PatientIcon, Payment as PaymentIcon, BarChart as AnalyticsIcon } from '@mui/icons-material';
 import { useNavigate } from 'react-router-dom';
+import Sidebar from '../components/Comman/Sidebar';
 
 function Dashboard() {
   const [anchorEl, setAnchorEl] = useState(null); // State to manage Popover
   const navigate = useNavigate(); // Get the navigate function
 
-  const menuItems = [
-    { text: 'Dashboard', icon: <DashboardIcon /> },
-    { text: 'Doctor Management', icon: <DoctorIcon /> },
-    { text: 'Patient Management', icon: <PatientIcon /> },
-    { text: 'Billing and Payment', icon: <PaymentIcon /> },
-    { text: 'Reporting and Analytics', icon: <AnalyticsIcon /> },
-  ];
-
   const open = Boolean(anchorEl);
-
-  // const handleProfileClick = (event) => {
-  //   setAnchorEl(event.currentTarget); 
-  // };
 
   const handleClose = () => {
     setAnchorEl(null);
@@ -28,70 +17,7 @@ function Dashboard() {
   return (
     <div className="flex h-screen">
       {/* Sidebar */}
-      <Drawer
-        variant="permanent"
-        anchor="left"
-        sx={{
-          width: 300,
-          '& .MuiDrawer-paper': {
-            width: 300,
-            boxSizing: 'border-box',
-            backgroundColor: 'white',
-            color: '#818194',
-          },
-        }}
-      >
-        {/* Logo */}
-        <div className="flex items-center justify-center p-4">
-          <img src="assets/img/logo.png" alt="Logo" className="w-48 h-auto" />
-        </div>
-
-        {/* Menu Items */}
-        <List>
-          {menuItems.map((item, index) => (
-            <ListItem
-              button
-              key={item.text}
-              sx={{
-                cursor: 'pointer',
-                '&:hover': {
-                  backgroundColor: '#E5E7EB',
-                  color: '#000',
-                },
-              }}
-            >
-              {/* Icon */}
-              <ListItemIcon
-                sx={{
-                  color: '#818194',
-                  '&:hover': {
-                    color: '#000',
-                  },
-                }}
-              >
-                {item.icon}
-              </ListItemIcon>
-              {/* Text */}
-              <ListItemText primary={item.text} />
-            </ListItem>
-          ))}
-        </List>
-
-        <div className="mt-auto p-4">
-          <Button
-            fullWidth
-            variant="contained"
-            startIcon={<LogoutIcon />}
-            className='font-semibold'
-            sx={{
-              backgroundColor: '#fdf2f2',
-              color: 'red'
-            }}
-          >
-            Logout
-          </Button>
-        </div>
-      </Drawer>
+      <Sidebar />
 
       {/* Main Content */}
       <div className="flex-1 flex flex-col">
@@ -140,7 +66,7 @@ function Dashboard() {
                   vertical: 'top',
                   horizontal: 'left',
                 }}
-                sx={{ marginTop: '8px' }} // Add margin for better positioning
+                sx={{ marginTop: '8px' }} 
               >
                 <div className="p-4">
                   <Typography variant="h6" className="font-semibold">Profile Settings</Typography>
