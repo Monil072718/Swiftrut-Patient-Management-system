@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
-import Navbar from '../../components/shared/Navbar';
-import Sidebar from '../../components/shared/Sidebar';
+import Navbar from '../../../components/Comman/Navbar';
+import Sidebar from '../../../components/Comman/Sidebar';
 
 const AddNewDoctor = () => {
   const fileInputRef = useRef(null);

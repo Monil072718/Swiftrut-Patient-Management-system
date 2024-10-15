@@ -781,7 +781,7 @@ function Patient() {
                                             {/* Doctor Name */}
                                             <div className="mb-2 flex justify-between">
                                                 <strong className='font-normal text-left text-costumDarkGray p-1'>Doctor Name:</strong>
-                                                <span>{selectedPatient.disease}}</span>
+                                                <span>{selectedPatient.disease}</span>
                                             </div>
 
                                             {/* Doctor Name */}
