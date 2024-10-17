@@ -19,6 +19,7 @@ import Invoice from './components/AdminPanel/Admin/Invoice';
 import Patient from './components/AdminPanel/PatientManagement/Patient';
 import Billing from './components/AdminPanel/BillingAndPayment/Billing';
 import CreateBill from './components/AdminPanel/BillingAndPayment/CreateBill';
+import PatientAppointment from './components/Patients/PatientAppointment';
 
 function App() {
   return (
@@ -44,6 +45,7 @@ function App() {
         <Route path="/patient" element={<Patient />} />
         <Route path="/billing" element={<Billing />} />
         <Route path="/createbill" element={<CreateBill />} />
+        <Route path="/patient-appoitment" element={<PatientAppointment />} />
       </Routes>
     </Router>
   );

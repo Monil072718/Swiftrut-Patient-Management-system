@@ -36,18 +36,23 @@ const DoctorManagement = () => {
     ];
 
     return (
-        <div className="main">
-            <div className="flex h-screen">
+
+        <div className="flex h-screen">
+            {/* Sidebar */}
+            <Sidebar />
+
+            {/* Main Content */}
+            <div className="flex-1 flex flex-col">
+                {/* Top Navbar */}
                 <Navbar />
 
-                <div className="flex-1 flex flex-col shadow-none">
-                    <Sidebar />
-
-                    <div className="p-6">
+                {/* Dashboard Content */}
+                <div className="main">
+                    <div className="p-6 ">
                         <div className="flex justify-between items-center mb-4">
                             <h2 className="text-2xl font-bold mb-4">Doctor Management</h2>
                             <div className='flex items-center'>
-                                <div className="flex items-center bg-gray-100 rounded-full w-[335px] h-[46px] px-4 py-2 gap-3 me-4">
+                                <div   div className="flex items-center bg-gray-100 rounded-full w-[335px] h-[46px] px-4 py-2 gap-3 me-4">
                                     <SearchIcon className="text-gray-500" />
                                     <InputBase
                                         placeholder="Quick Search"
@@ -124,10 +129,14 @@ const DoctorManagement = () => {
                             </tbody>
                         </table>
                     </div>
+
                 </div>
+
             </div>
         </div>
     );
 };
 
 export default DoctorManagement;
+
+
