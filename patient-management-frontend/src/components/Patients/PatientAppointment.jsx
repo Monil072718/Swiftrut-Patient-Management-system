@@ -62,11 +62,11 @@ const PatientAppointment = () => {
                             <div className="bg-white shadow rounded-lg p-6 border border-blue-200 me-4">
                                 <div className="flex justify-between items-center mb-4">
                                     <h3 className="text-xl font-bold">Medical History</h3>
-                                    <button className="text-blue-500">View All History</button>
+                                    <button className="text-sky-500">View All History</button>
                                 </div>
                                 <div className="flex space-x-4 overflow-x-auto">
                                     {[1, 2, 3].map((_, index) => (
-                                        <div key={index} className="bg-gray-100 p-4 rounded-lg w-64 min-w-[200px]">
+                                        <div key={index} className="bg-gray-100 p-4 rounded-lg w-64 min-w-[300px]">
                                             <h4 className="font-bold">Dulce Schleifer</h4>
                                             <p className="text-sm text-gray-500">2 Jan, 2022</p>
                                             <p className="text-gray-600 mt-2">
@@ -78,10 +78,10 @@ const PatientAppointment = () => {
                             </div>
 
                             {/* Prescriptions */}
-                            <div className="bg-white shadow rounded-lg p-6 border border-blue-200">
+                            <div className="bg-white shadow rounded-lg p-6 border border-grey-200">
                                 <div className="flex justify-between items-center mb-4">
                                     <h3 className="text-xl font-bold">Prescriptions</h3>
-                                    <button className="text-blue-500">View All Prescription</button>
+                                    <button className="text-sky-500">View All Prescription</button>
                                 </div>
                                 <table className="w-full text-left">
                                     <thead>

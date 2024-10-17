@@ -1,13 +1,15 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
+const Config = require(".");
 
-const connectDB = async () => {
+const url = Config.DB_URL;
+
+const dbConnection = async () => {
   try {
-    await mongoose.connect(process.env.MONGO_URI); // Remove the deprecated options
-    console.log('MongoDB connected successfully');
-  } catch (err) {
-    console.error('MongoDB connection failed:', err.message);
-    process.exit(1); // Exit process with failure
+    await mongoose.connect(url);
+    console.log("Database Connected");
+  } catch (error) {
+    console.log(error);
   }
 };
 
-module.exports = connectDB;
+module.exports = dbConnection;
