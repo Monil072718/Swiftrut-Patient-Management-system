@@ -23,6 +23,7 @@ import PatientAppointment from './components/Patients/PatientAppointment';
 import PatientEditProfile from './components/Patients/PatientEditProfile';
 import PrescriptionPage from './components/Patients/PrescriptionPage';
 import TestReportPage from './components/Patients/TestReportPage';
+import MedicalHistory from './components/Patients/MedicalHistory';
 
 function App() {
   return (
@@ -52,6 +53,7 @@ function App() {
         <Route path="/patient-edit" element={<PatientEditProfile />} />
         <Route path="/prescription" element={<PrescriptionPage />} />
         <Route path="/test-report" element={<TestReportPage />} />
+        <Route path="/medical-history" element={<MedicalHistory />} />
       </Routes>
     </Router>
   );
