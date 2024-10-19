@@ -1,12 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
-<<<<<<< HEAD
-import { Box, Typography, TextField, Checkbox, FormControlLabel, Button, Radio } from '@mui/material';
-=======
 import { Box, Typography, TextField, Checkbox, FormControlLabel, Button } from '@mui/material';
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
->>>>>>> 5caa8018c2ff9db2753c8e3c38757337e83f4ded
 
 function Login() {
   const [emailOrPhone, setEmailOrPhone] = useState('');
@@ -58,133 +54,6 @@ function Login() {
     <div className="flex h-screen">
       {/* Left Section: Form */}
       <div className="w-full md:w-1/2 flex items-center justify-center bg-gray-100">
-<<<<<<< HEAD
-        <Box className="bg-white p-8 rounded-2xl shadow-lg w-1/2">
-          <Typography variant="h4" className="mb-[20px]" style={{ fontFamily: 'Lato', fontWeight: '600', color: '#000' }}>
-            Login
-          </Typography>
-          {error && <Typography color="error" className="mb-4">{error}</Typography>}
-          <form onSubmit={handleLogin} className='mt-4'>
-            <div className="mb-4">
-              <TextField
-                fullWidth
-                label="Emai Or Phone"
-                value={emailOrPhone}
-                onChange={(e) => setEmailOrPhone(e.target.value)}
-                placeholder="Enter Email "
-                variant="outlined"
-                error={!!emailError}
-                helperText={emailError} //
-                InputLabelProps={{
-                  shrink: true,
-                  style: {
-                    textDecoration: 'none',
-                    color: 'inherit',
-                    fontWeight: '600',
-                    fontFamily: 'lato',
-                    color: '#030229'
-                  },
-                }}
-              />
-            </div>
-
-            {/* Password */}
-            <div className="mb-4">
-              <TextField
-                fullWidth
-                label="Forgot Password"
-                name='password'
-                value={password}
-                onChange={handleChange}
-                placeholder="Enter Password"
-                variant="outlined"
-                InputLabelProps={{
-                  shrink: true,
-                  style: {
-                    textDecoration: 'none',
-                    color: 'inherit',
-                    fontWeight: '600',
-                    fontFamily: 'lato'
-                  },
-                }}
-
-              />
-            </div>
-
-            {/* Remember Me and Forgot Password */}
-            <div className="flex justify-between items-center ">
-              <FormControlLabel
-                control={
-                  <Radio
-                    checked={rememberMe}
-                    onChange={handleChange}
-                    name="rememberMe"
-                    icon={
-                      <span
-                        style={{
-                          width: 20,
-                          height: 20,
-                          borderRadius: '50%',
-                          border: '2px solid #0eabeb',
-                        }}
-                      ></span>
-                    }
-                    checkedIcon={
-                      <span
-                        style={{
-                          width: 20,
-                          height: 20,
-                          borderRadius: '50%',
-                          backgroundColor: '#0eabeb',
-                          display: 'flex',
-                          justifyContent: 'center',
-                          alignItems: 'center',
-                          color: '#fff',
-                        }}
-                      >
-                        ✓
-                      </span>
-                    }
-                    sx={{
-                      '& .MuiSvgIcon-root': { fontSize: 20 },
-                    }}
-                  />
-                }
-                label={
-                  <span style={{ fontFamily: 'Lato', fontWeight: '600', fontSize: '12px' }}>
-                    Remember Me
-                  </span>
-                }
-              />
-              <Link
-                to="/forgot-password"
-                variant="body2"
-                style={{ fontFamily: 'Lato', fontWeight: '600', fontSize: '12px', color: '#5678E9' }}
-              >
-                Forgot Password?
-              </Link>
-            </div>
-
-
-            {/* Login Button */}
-            <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              className="mb-4"
-              sx={{
-                backgroundColor: emailOrPhone ? '#0eabeb' : '#F6F8FB',
-                color: emailOrPhone ? '#fff' : '#4F4F4F',
-                boxShadow: 'none',
-                '&:hover': {
-                  backgroundColor: emailOrPhone ? '#0eabeb' : '#F6F8FB',
-                  boxShadow: 'none',
-                },
-                borderRadius: '10px',
-                fontFamily: 'Lato',
-                 fontWeight: '600'
-              }}
-=======
       <Box className="bg-white p-10 rounded-lg shadow-lg w-full max-w-md">
         <Typography variant="h4" className="mb-6 font-semibold pb-5">
           Login
@@ -206,25 +75,12 @@ function Login() {
             <label
               htmlFor="email"
               className="absolute left-3 -top-2.5 px-1 bg-white text-sm font-medium text-gray-500 transition-all duration-200 peer-focus:-top-2.5 peer-focus:left-3"
->>>>>>> 5caa8018c2ff9db2753c8e3c38757337e83f4ded
             >
               Email or Phone<span className="text-red-500">*</span>
             </label>
             {errors.email && <p className="text-red-500 text-sm mt-1">{errors.email}</p>}
           </div>
 
-<<<<<<< HEAD
-            {/* Don't have an account? */}
-            <Typography className="text-center" style={{ fontFamily: 'Lato', fontWeight: '600', fontSize: '14px', color: '#000' }}>
-              Don’t have an account ?{' '}
-              <Link to="/signup" style={{ fontFamily: 'Lato', fontWeight: '600', fontSize: '14px', color: '#5678E9' }}>
-                Registration
-              </Link>
-            </Typography>
-          </form>
-        </Box>
-      </div>
-=======
           {/* Password Input */}
           <div className="relative mb-4">
             <input
@@ -279,7 +135,6 @@ function Login() {
         </form>
       </Box>
     </div>
->>>>>>> 5caa8018c2ff9db2753c8e3c38757337e83f4ded
 
 
       {/* Right Section: Image */}

@@ -7,7 +7,7 @@ import {
     FaImage,
 } from "react-icons/fa";
 // import { useBreadcrumb } from "../../context/BreadcrumbContext";
-import logo from "../../assets/images/logo.png";
+import logo from "../../assets/Images/logo.png";
 import PrescritionModal from "../../components/Patients/PrescritionModal";
 import PatientSidebar from "./PatientSidebar";
 import PatientNavbar from "./PatientNavbar";

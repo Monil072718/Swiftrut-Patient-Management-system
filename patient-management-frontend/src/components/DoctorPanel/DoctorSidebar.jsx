@@ -1,36 +1,34 @@
 import React, { useState } from 'react';
 import { Drawer, List, ListItem, ListItemIcon, Typography, Button, Box } from '@mui/material';
 import { useLocation, useNavigate } from 'react-router-dom';
-import {
-    Dashboard as DashboardIcon,
-    Person as DoctorIcon,
-    Group as PatientIcon,
-    Payment as PaymentIcon,
-    BarChart as AnalyticsIcon,
-    Logout as LogoutIcon,
-} from '@mui/icons-material';
+import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
+import MedicalServicesIcon from '@mui/icons-material/MedicalServices';
+import PermPhoneMsgIcon from '@mui/icons-material/PermPhoneMsg';
+import QuestionAnswerIcon from '@mui/icons-material/QuestionAnswer';
+import { MdOutlineEventNote } from "react-icons/md";
+import LogoutIcon from '@mui/icons-material/Logout';
 import logo from '../../assets/Images/logo.png'; 
 
-const Sidebar = () => {
+const DoctorSidebar = () => {
     const navigate = useNavigate();
     const location = useLocation();
     const [billingOpen, setBillingOpen] = useState(false);
 
     const menuItems = [
-        { text: 'Dashboard', icon: <DashboardIcon />, path: '/' },
-        { text: 'Doctor Management', icon: <DoctorIcon />, path: '/DoctorManagement' },
-        { text: 'Patient Management', icon: <PatientIcon />, path: '/patient' },
+        { text: 'Appointment Management', icon: <CalendarMonthIcon />, path: '/appoinmentmanagement' },
+        { text: 'Patient Record Access', icon: <MdOutlineEventNote />, path: '/patient_record' },
         {
-            text: 'Billing and Payment',
-            icon: <PaymentIcon />,
-            path: '/billing',
+            text: 'Prescription Tools',
+            icon: <MedicalServicesIcon />,
+            path: '/prescription',
             children: [
-                { text: 'Monitor Billing', path: '/billing' },
-                { text: 'Insurance Claims', path: '/billing/insurance' },
-                { text: 'Payment Process', path: '/billing/payment' },
+                { text: 'Create', path: '/create' },
+                { text: 'Manage', path: '/prescription/manage' },
+                
             ],
         },
-        { text: 'Reporting and Analytics', icon: <AnalyticsIcon />, path: '/reporting' },
+        { text: 'Teleconsultation Module', icon: <PermPhoneMsgIcon />, path: '/teleconsultation' },
+        { text: 'Chat', icon: <QuestionAnswerIcon />, path: '/chat' },
     ];
 
     const handleMenuClick = (path) => {
@@ -160,4 +158,4 @@ const Sidebar = () => {
     );
 };
 
-export default Sidebar;
+export default DoctorSidebar;
