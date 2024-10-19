@@ -9,7 +9,7 @@ import {
     BarChart as AnalyticsIcon,
     Logout as LogoutIcon,
 } from '@mui/icons-material';
-import logo from '../../assets/Images/logo.png'; 
+// import logo from '../../assets/Images/logo.png'; 
 
 const Sidebar = () => {
     const navigate = useNavigate();
@@ -57,7 +57,7 @@ const Sidebar = () => {
         >
             {/* Logo */}
             <div className="flex items-center justify-center p-10">
-            <img src={logo} alt="Logo" className="w-48 h-auto" />
+            {/* <img src={logo} alt="Logo" className="w-48 h-auto" /> */}
             </div>
 
             {/* Menu Items */}
