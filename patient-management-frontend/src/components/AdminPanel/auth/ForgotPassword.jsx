@@ -1,42 +1,81 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { Box, Typography, TextField, Button } from '@mui/material';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 function ForgotPassword() {
   const [emailOrPhone, setEmailOrPhone] = useState('');
   const [message, setMessage] = useState('');
+  const [otp, setOtp] = useState('');
+  const [otpSent, setOtpSent] = useState(false);
+  const navigate = useNavigate();
+
+  const generateOtp = () => {
+    // Generate a random 6-digit OTP
+    const generatedOtp = Math.floor(100000 + Math.random() * 900000).toString();
+    setOtp(generatedOtp);
+    alert(`Your OTP is: ${generatedOtp}`); // Display the OTP (for demo purposes)
+
+    // Navigate to the OTP verification page
+    navigate('/verify-otp', { state: { otp } }); // Pass OTP to the next page
+  };
+
 
   const handleGetOtp = async (e) => {
-    e.preventDefault();
+    e.preventDefault(); // Prevent the default form submission
+
+    if (!emailOrPhone) {
+      // Optional: Show an error if no email/phone is entered
+      alert('Please enter your email or phone number.');
+      return;
+    }
+
     try {
-      await axios.post('http://localhost:5500/api/auth/get-otp', { emailOrPhone });
-      setMessage('OTP sent to your email/phone.');
+      // Make the API call to send OTP
+      const response = await axios.post('/api/send-otp', { emailOrPhone });
+
+      if (response.data.success) {
+        setOtpSent(true);
+        alert('OTP sent successfully!'); // Optionally, you can show a success message
+      } else {
+        alert('Failed to send OTP. Please try again.'); // Handle errors
+      }
     } catch (error) {
-      setMessage('Error sending OTP. Try again.');
+      console.error('Error sending OTP:', error);
+      alert('An error occurred. Please try again.');
     }
   };
+
 
   return (
     <div className="flex h-screen">
       {/* Left Section: Form */}
       <div className="w-full md:w-1/2 flex items-center justify-center bg-gray-100">
         <Box className="bg-white p-10 rounded-2xl shadow-lg w-1/2">
-          <Typography variant="h4" className="mb-4 font-lato font-semibold text-center">
+          <Typography variant="h4" className="text-start" sx={{ fontFamily: 'Lato', fontWeight: '600', mb: '6px' }}>
             Forgot Password
           </Typography>
-          <Typography variant="body1" className="mb-4 text-sm">
+          <Typography variant="body1" sx={{ fontSize: '10px', fontFamily: 'Lato', fontWeight: '400', }}>
             Enter your email or phone and we’ll send you a OTP to reset your password.
           </Typography>
           <form onSubmit={handleGetOtp} className='mt-4'>
             <div className="mb-4">
               <TextField
-                label="Email or Phone"
-                variant="outlined"
                 fullWidth
-                required
+                label="Forgot Password"
                 value={emailOrPhone}
                 onChange={(e) => setEmailOrPhone(e.target.value)}
+                placeholder="Enter Email or Phone Number"
+                variant="outlined"
+                InputLabelProps={{
+                  shrink: true,
+                  style: {
+                    textDecoration: 'none',
+                    color: 'inherit',
+                    fontWeight: '600',
+                    fontFamily: 'lato'
+                  },
+                }}
               />
             </div>
             {message && (
@@ -45,17 +84,29 @@ function ForgotPassword() {
               </Typography>
             )}
             <Button
-              type="submit"
+              type="button" // Change to button type
               fullWidth
               variant="contained"
-              color="primary"
               className="mb-4"
+              onClick={generateOtp} // Call the generateOtp function
+              sx={{
+                backgroundColor: emailOrPhone ? '#0eabeb' : '#F6F8FB',
+                color: emailOrPhone ? '#fff' : '#4F4F4F',
+                boxShadow: 'none',
+                '&:hover': {
+                  backgroundColor: emailOrPhone ? '#0eabeb' : '#F6F8FB',
+                  boxShadow: 'none',
+                },
+                borderRadius: '10px',
+                fontFamily: 'Lato',
+                fontWeight: '600',
+              }}
             >
               Get OTP
             </Button>
           </form>
           <Typography className="text-center mt-">
-            <Link href="/login" className="text-blue-600 ">
+            <Link href="/login" style={{ fontFamily: 'Lato', color: '#5678E9', fontSize: '12px', fontWeight: '600' }}>
               Back to Login
             </Link>
           </Typography>
@@ -118,7 +169,6 @@ function ForgotPassword() {
           </div>
         </div>
       </div>
-      <h1>hi</h1>
     </div>
   );
 }

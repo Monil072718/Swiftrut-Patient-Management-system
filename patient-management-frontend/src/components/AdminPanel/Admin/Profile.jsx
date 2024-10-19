@@ -127,7 +127,15 @@ const Profile = () => {
                                             placeholder="Lincoln"
                                             label="First Name"
                                             required 
-                                            sx={{ border: "1px solid #15151533", borderRadius: "10px" }}
+                                            InputLabelProps={{
+                                                shrink: true,
+                                                style: {
+                                                    textDecoration: 'none',
+                                                    color: 'inherit',
+                                                    fontWeight: '600',
+                                                    fontFamily: 'lato'
+                                                },
+                                            }}                                            
                                         />
                                     </div>
                                     <div className="flex flex-col w-full mb-4">
@@ -139,7 +147,15 @@ const Profile = () => {
                                             placeholder="Philips"
                                             label="Last Name"
                                             required 
-                                            sx={{ border: "1px solid #15151533", borderRadius: "10px" }}
+                                            InputLabelProps={{
+                                                shrink: true,
+                                                style: {
+                                                    textDecoration: 'none',
+                                                    color: 'inherit',
+                                                    fontWeight: '600',
+                                                    fontFamily: 'lato'
+                                                },
+                                            }}
                                         />
                                     </div>
                                     <div className="flex flex-col w-full mb-4">
@@ -152,7 +168,15 @@ const Profile = () => {
                                             label="Email"
                                             required
                                             type="email"
-                                            sx={{ border: "1px solid #15151533", borderRadius: "10px" }}
+                                            InputLabelProps={{
+                                                shrink: true,
+                                                style: {
+                                                    textDecoration: 'none',
+                                                    color: 'inherit',
+                                                    fontWeight: '600',
+                                                    fontFamily: 'lato'
+                                                },
+                                            }}
                                         />
                                     </div>
                                 </div>
@@ -167,7 +191,15 @@ const Profile = () => {
                                             placeholder="99130 53222"
                                             label="Phone Number"
                                             required
-                                            sx={{ border: "1px solid #15151533", borderRadius: "10px" }}
+                                            InputLabelProps={{
+                                                shrink: true,
+                                                style: {
+                                                    textDecoration: 'none',
+                                                    color: 'inherit',
+                                                    fontWeight: '600',
+                                                    fontFamily: 'lato'
+                                                },
+                                            }}
                                         />
                                     </div>
                                     <div className="flex flex-col w-full mb-4">
@@ -179,7 +211,15 @@ const Profile = () => {
                                             // placeholder="Silver Park Medical Center"
                                             label="Hospital Name"
                                             required
-                                            sx={{ border: "1px solid #15151533", borderRadius: "10px" }}
+                                            InputLabelProps={{
+                                                shrink: true,
+                                                style: {
+                                                    textDecoration: 'none',
+                                                    color: 'inherit',
+                                                    fontWeight: '600',
+                                                    fontFamily: 'lato'
+                                                },
+                                            }}
                                         />
                                     </div>
                                     <div className="flex flex-col w-full mb-4">
@@ -191,7 +231,15 @@ const Profile = () => {
                                                 name="gender"
                                                 value={formData.gender}
                                                 onChange={handleInputChange}
-                                                sx={{ border: "1px solid #15151533", borderRadius: "10px" }}
+                                                InputLabelProps={{
+                                                    shrink: true,
+                                                    style: {
+                                                        textDecoration: 'none',
+                                                        color: 'inherit',
+                                                        fontWeight: '600',
+                                                        fontFamily: 'lato'
+                                                    },
+                                                }}
                                             >
                                                 <MenuItem value="Male">Male</MenuItem>
                                                 <MenuItem value="Female">Female</MenuItem>
@@ -211,7 +259,15 @@ const Profile = () => {
                                             placeholder="Ahmedabad"
                                             required
                                             label="City"
-                                            sx={{ border: "1px solid #15151533", borderRadius: "10px" }}
+                                            InputLabelProps={{
+                                                shrink: true,
+                                                style: {
+                                                    textDecoration: 'none',
+                                                    color: 'inherit',
+                                                    fontWeight: '600',
+                                                    fontFamily: 'lato'
+                                                },
+                                            }}
                                         />
                                     </div>
                                     <div className="flex flex-col w-full mb-4">
@@ -223,7 +279,15 @@ const Profile = () => {
                                             placeholder="Gujarat"
                                             required
                                             label="State"
-                                            sx={{ border: "1px solid #15151533", borderRadius: "10px" }}
+                                            InputLabelProps={{
+                                                shrink: true,
+                                                style: {
+                                                    textDecoration: 'none',
+                                                    color: 'inherit',
+                                                    fontWeight: '600',
+                                                    fontFamily: 'lato'
+                                                },
+                                            }}
                                         />
                                     </div>
                                     <div className="flex flex-col w-full mb-4">
@@ -235,7 +299,15 @@ const Profile = () => {
                                             placeholder="India"
                                             required
                                             label="Country"
-                                            sx={{ border: "1px solid #15151533", borderRadius: "10px" }}
+                                            InputLabelProps={{
+                                                shrink: true,
+                                                style: {
+                                                    textDecoration: 'none',
+                                                    color: 'inherit',
+                                                    fontWeight: '600',
+                                                    fontFamily: 'lato'
+                                                },
+                                            }}
                                         />
                                     </div>
 
