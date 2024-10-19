@@ -38,7 +38,6 @@ import MedicalHistory from './components/Patients/MedicalHistory';
 import AppointmentBookingPage from './components/Patients/AppointmentBookingPage';
 import PrescriptionAccessPage from './components/Patients/PrescriptionAccessPage';
 import TeleAccess from './components/Patients/TeleAccess';
->>>>>>> 5caa8018c2ff9db2753c8e3c38757337e83f4ded
 
 function App() {
   return (
