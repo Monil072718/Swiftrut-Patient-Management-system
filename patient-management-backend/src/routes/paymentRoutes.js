@@ -1,11 +1,14 @@
 const express = require('express');
-const { processPayment,getPayment,updatePayment,deletePayment } = require('../controllers/paymentController');
-const { verifyRole } = require('../middleware/verifyRole');
 const router = express.Router();
+const { createPayment, executePayment, cancelPayment } = require('../controllers/paymentController');
 
-router.post('/process-payment', verifyRole(['admin']), processPayment);
-router.get('/', verifyRole(['admin']), getPayment);
-router.put('/:paymentId', verifyRole(['admin']), updatePayment);
-router.delete('/:paymentId', verifyRole(['admin']), deletePayment);
+// Route to create a payment
+router.post('/', createPayment);
+
+// Route for successful payment
+router.get('/success', executePayment);
+
+// Route for canceled payment
+router.get('/cancel', cancelPayment);
 
 module.exports = router;

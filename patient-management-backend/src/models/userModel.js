@@ -3,16 +3,20 @@ const bcrypt = require("bcryptjs");
 
 const userSchema = new mongoose.Schema(
   {
-    firstName: { type: String, required: true },
-    lastName: { type: String, required: true },
-    email: { type: String, required: true, unique: true },
+    firstName: { type: String },
+    lastName: { type: String },
+    email: { type: String, unique: true },
     phoneNumber: { type: String, required: true, unique: true },
     password: { type: String, required: true },
-    role: { 
-      type: String, 
-      enum: ['doctor', 'patient', 'admin'], 
-      default: 'patient' 
-  },  
+    role: {
+      type: String,
+      enum: ["admin", "doctor", "patient"],
+      required: true,
+    },
+    otp: { type: String }, // OTP field for verification
+    otpExpires: { type: Date }, // OTP expiry time
+    profileImage: { type: String }, // Store path for profile image
+    signatureImage: { type: String }, // Store path for signature image
     // Fields specific to patient
     age: { type: Number },
     height: { type: Number },

@@ -1,61 +1,56 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
-const invoiceSchema = new mongoose.Schema({
-    hospitalName: {type: String,required: true},
-    billNumber: {type: String,required: true,unique: true},
-    patientName: {type: String,required: true},
-    phoneNumber: {type: String,required: true},
-    doctorName: {type: String,required: true},
-    diseaseName: {type: String,required: true},
-    billDate: {type: Date,required: true},
-    billTime: {type: String,required: true},
-    subTotal: {type: Number,required: true},
-    tax: {type: Number,required: true},
-    totalAmount: {type: Number,required: true},
-    items: [
-        {
-            description: {
-                type: String,
-                required: true
-            },
-            qty: {
-                type: Number,
-                required: true
-            },
-            price: {
-                type: Number,
-                required: true
-            },
-            total: {
-                type: Number,
-                required: true
-            }
-        }
-    ],
-    payment: {
-        paymentMethod: {
-            type: String,
-            enum: ['Online', 'Credit Card', 'Cash'], // Limiting the values to these payment methods
-            required: true
-        },
-        bankName: {
-            type: String,
-            required: function () { return this.paymentMethod !== 'Cash'; }
-        },
-        accountNumber: {
-            type: String,
-            required: function () { return this.paymentMethod !== 'Cash'; }
-        },
-        transactionId: {
-            type: String,
-            required: function () { return this.paymentMethod === 'Online' || this.paymentMethod === 'Credit Card'; }
-        },
-        paymentStatus: {
-            type: String,
-            enum: ['Pending', 'Completed'],
-            default: 'Pending'
-        }
-    }
-}, { timestamps: true });
+const invoiceSchema = new mongoose.Schema(
+  {
+    hospital: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Hospital", // Assuming you have a Hospital model
+      required: true,
+    },
+    patient: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User", // Assuming patient is a user
+      required: true,
+    },
+    doctor: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User", // Reference to doctor as a user
+      required: true,
+    },
+    diseaseName: { type: String, required: true },
+    billDate: { type: Date, required: true },
+    billTime: { type: String, required: true },
+    billNumber: { type: String, required: true },
+    phoneNumber: { type: String, required: true },
+    email: { type: String },
+    address: { type: String, required: true },
+    otherText: { type: String }, // Add otherText field
+    description: { type: String, required: true },
+    amount: { type: Number, required: true },
+    tax: { type: Number, required: true },
+    discount: { type: Number, default: 0 }, // Optional field for discount
+    totalAmount: { type: Number, required: true },
+    paymentType: {
+      type: String,
+      enum: ["Cash", "Online", "Insurance"],
+      required: true,
+    },
+    gender: { type: String, enum: ["Male", "Female", "Other"], required: true },
+    age: { type: Number, required: true },
+    insuranceDetails: {
+      insuranceCompany: { type: String },
+      insurancePlan: { type: String },
+      claimAmount: { type: Number },
+      claimedAmount: { type: Number },
+    }, // Optional fields for insurance
+    logoUrl: { type: String }, // If you want to store hospital logo URL
+    status: {
+      type: String,
+      enum: ["Paid", "Unpaid"],
+      default: "Unpaid",
+    },
+  },
+  { timestamps: true }
+);
 
-module.exports = mongoose.model('Invoice', invoiceSchema);
+module.exports = mongoose.model("Invoice", invoiceSchema);

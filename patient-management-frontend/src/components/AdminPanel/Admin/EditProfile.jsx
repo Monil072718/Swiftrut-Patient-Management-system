@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { AppBar, Toolbar, IconButton, InputBase, Badge, Avatar, List, ListItem, ListItemText, ListItemIcon, Drawer, Button, Popover, Typography, TextField, FormControl, InputLabel, Select, MenuItem } from '@mui/material';
+import { Avatar,  Button,Typography, TextField, FormControl, InputLabel, Select, MenuItem } from '@mui/material';
 import { Search as SearchIcon, Notifications as NotificationsIcon, Logout as LogoutIcon, Dashboard as DashboardIcon, Person as DoctorIcon, Group as PatientIcon, Payment as PaymentIcon, BarChart as AnalyticsIcon, Edit as EditIcon, PrivacyTip as PrivacyIcon, Assignment as TermsIcon, Person as PersonIcon, Home as HomeIcon } from '@mui/icons-material';
-import EnhancedEncryptionIcon from '@mui/icons-material/EnhancedEncryption';
-import BadgeIcon from '@mui/icons-material/Badge';
 import Navbar from '../../Comman/Navbar';
 import Sidebar from '../../Comman/Sidebar';
 

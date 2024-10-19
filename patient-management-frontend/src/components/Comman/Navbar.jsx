@@ -1,6 +1,6 @@
 // Navbar.jsx
 import React from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
 import {
     AppBar,
     Toolbar,
@@ -14,6 +14,7 @@ import {
 import HomeIcon from '@mui/icons-material/Home';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import SearchIcon from '@mui/icons-material/Search';
+import { HiOutlineLogout } from "react-icons/hi";
 
 const Navbar = ({ currentPage, showBreadcrumb }) => {
     const [anchorEl, setAnchorEl] = React.useState(null);
@@ -49,7 +50,7 @@ const Navbar = ({ currentPage, showBreadcrumb }) => {
                 </div>
 
                 <div className="flex items-center space-x-4">
-                    
+
                     <div className="flex items-center bg-[#f6f8fb] rounded-full mr-4">
                         <InputBase
                             placeholder="Search..."
@@ -95,9 +96,13 @@ const Navbar = ({ currentPage, showBreadcrumb }) => {
                             <Typography variant="body2" className="mt-2 cursor-pointer">
                                 Change Password
                             </Typography>
-                            <Typography variant="body2" className="mt-2 cursor-pointer">
+                            <NavLink
+                                to="/logout"
+                                className="flex items-center justify-start py-3 text-red-500 font-semibold bg-red-100 px-5"
+                            >
+                                <HiOutlineLogout className="mr-2 text-lg" />
                                 Logout
-                            </Typography>
+                            </NavLink>
                         </div>
                     </Popover>
                 </div>

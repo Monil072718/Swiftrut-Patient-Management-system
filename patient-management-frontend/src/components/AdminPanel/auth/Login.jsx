@@ -1,7 +1,12 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
+<<<<<<< HEAD
 import { Box, Typography, TextField, Checkbox, FormControlLabel, Button, Radio } from '@mui/material';
+=======
+import { Box, Typography, TextField, Checkbox, FormControlLabel, Button } from '@mui/material';
+import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
+>>>>>>> 5caa8018c2ff9db2753c8e3c38757337e83f4ded
 
 function Login() {
   const [emailOrPhone, setEmailOrPhone] = useState('');
@@ -25,6 +30,7 @@ function Login() {
     }
   };
 
+  const [errors, setErrors] = useState({});
   const handleChange = (e) => {
     const { name, value, checked } = e.target;
 
@@ -42,11 +48,17 @@ function Login() {
       setRememberMe(checked);
     }
   };
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
+  const [showPassword, setShowPassword] = useState(true);
+  const [email, setEmail] = useState("");
 
   return (
     <div className="flex h-screen">
       {/* Left Section: Form */}
       <div className="w-full md:w-1/2 flex items-center justify-center bg-gray-100">
+<<<<<<< HEAD
         <Box className="bg-white p-8 rounded-2xl shadow-lg w-1/2">
           <Typography variant="h4" className="mb-[20px]" style={{ fontFamily: 'Lato', fontWeight: '600', color: '#000' }}>
             Login
@@ -172,10 +184,36 @@ function Login() {
                 fontFamily: 'Lato',
                  fontWeight: '600'
               }}
+=======
+      <Box className="bg-white p-10 rounded-lg shadow-lg w-full max-w-md">
+        <Typography variant="h4" className="mb-6 font-semibold pb-5">
+          Login
+        </Typography>
+        <form onSubmit={handleLogin}>
+          {/* Email or Phone Input */}
+          <div className="relative mb-4">
+            <input
+              type="text"
+              id="email"
+              name="email"
+              className={`peer w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-0 ${
+                errors.email ? 'border-red-500' : 'border-gray-300'
+              }`}
+              placeholder="Enter Email or Phone Number"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+            <label
+              htmlFor="email"
+              className="absolute left-3 -top-2.5 px-1 bg-white text-sm font-medium text-gray-500 transition-all duration-200 peer-focus:-top-2.5 peer-focus:left-3"
+>>>>>>> 5caa8018c2ff9db2753c8e3c38757337e83f4ded
             >
-              Login
-            </Button>
+              Email or Phone<span className="text-red-500">*</span>
+            </label>
+            {errors.email && <p className="text-red-500 text-sm mt-1">{errors.email}</p>}
+          </div>
 
+<<<<<<< HEAD
             {/* Don't have an account? */}
             <Typography className="text-center" style={{ fontFamily: 'Lato', fontWeight: '600', fontSize: '14px', color: '#000' }}>
               Don’t have an account ?{' '}
@@ -186,6 +224,62 @@ function Login() {
           </form>
         </Box>
       </div>
+=======
+          {/* Password Input */}
+          <div className="relative mb-4">
+            <input
+              type={showPassword ? 'text' : 'password'}
+              id="password"
+              name="password"
+              className={`peer w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-0 ${
+                errors.password ? 'border-red-500' : 'border-gray-300'
+              }`}
+              placeholder="Enter Password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+            <label
+              htmlFor="password"
+              className="absolute left-3 -top-2.5 px-1 bg-white text-sm font-medium text-gray-500 transition-all duration-200 peer-focus:-top-2.5 peer-focus:left-3"
+            >
+              Password<span className="text-red-500">*</span>
+            </label>
+            {errors.password && <p className="text-red-500 text-sm mt-1">{errors.password}</p>}
+            <div className="absolute inset-y-0 right-3 flex items-center cursor-pointer" onClick={togglePasswordVisibility}>
+              {showPassword ? <AiOutlineEyeInvisible className="text-gray-500" /> : <AiOutlineEye className="text-gray-500" />}
+            </div>
+          </div>
+
+          {/* Remember Me and Forgot Password */}
+          <div className="flex justify-between items-center mb-4">
+            <FormControlLabel
+              control={<Checkbox color="primary" />}
+              label="Remember me"
+            />
+            <Link to="/forgot-password" className="text-base text-sky-500 hover:underline">
+              Forgot password?
+            </Link>
+          </div>
+
+          {/* Login Button */}
+          <Button
+            type="submit"
+            className="w-full py-2 bg-blue-900 font-semibold rounded-md   "
+          >
+            Login
+          </Button>
+
+          {/* Registration Link */}
+          <Typography className="text-center mt-4 text-sm">
+            Don’t have an account?{' '}
+            <Link to="/signup" className="text-blue-500 hover:underline">
+              Registration
+            </Link>
+          </Typography>
+        </form>
+      </Box>
+    </div>
+>>>>>>> 5caa8018c2ff9db2753c8e3c38757337e83f4ded
 
 
       {/* Right Section: Image */}
