@@ -20,6 +20,9 @@ import Patient from './components/AdminPanel/PatientManagement/Patient';
 import Billing from './components/AdminPanel/BillingAndPayment/Billing';
 import CreateBill from './components/AdminPanel/BillingAndPayment/CreateBill';
 import PatientAppointment from './components/Patients/PatientAppointment';
+import PatientEditProfile from './components/Patients/PatientEditProfile';
+import PrescriptionPage from './components/Patients/PrescriptionPage';
+import TestReportPage from './components/Patients/TestReportPage';
 
 function App() {
   return (
@@ -46,6 +49,9 @@ function App() {
         <Route path="/billing" element={<Billing />} />
         <Route path="/createbill" element={<CreateBill />} />
         <Route path="/patient-appoitment" element={<PatientAppointment />} />
+        <Route path="/patient-edit" element={<PatientEditProfile />} />
+        <Route path="/prescription" element={<PrescriptionPage />} />
+        <Route path="/test-report" element={<TestReportPage />} />
       </Routes>
     </Router>
   );
