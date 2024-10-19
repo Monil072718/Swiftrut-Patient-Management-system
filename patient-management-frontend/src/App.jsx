@@ -24,6 +24,7 @@ import PatientEditProfile from './components/Patients/PatientEditProfile';
 import PrescriptionPage from './components/Patients/PrescriptionPage';
 import TestReportPage from './components/Patients/TestReportPage';
 import MedicalHistory from './components/Patients/MedicalHistory';
+import AppointmentBookingPage from './components/Patients/AppointmentBookingPage';
 
 function App() {
   return (
@@ -40,7 +41,7 @@ function App() {
         <Route path="/change-password" element={<ChangePassword />} />
         <Route path="/terms-condition" element={<TermsCondition />} />
         <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-        <Route path="/appointment" element={<DoctorAppointment />} />
+        <Route path="/doc-appointment" element={<DoctorAppointment />} />
         <Route path="/search" element={<SearchResult />} />
         <Route path="/doctormanagement" element={<DoctorManagement />} />
         <Route path="/onsite" element={<DoctorOnSite />} />
@@ -54,6 +55,7 @@ function App() {
         <Route path="/prescription" element={<PrescriptionPage />} />
         <Route path="/test-report" element={<TestReportPage />} />
         <Route path="/medical-history" element={<MedicalHistory />} />
+        <Route path="/patient-appointment" element={<AppointmentBookingPage />} />
       </Routes>
     </Router>
   );
