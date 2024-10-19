@@ -5,7 +5,6 @@ import { Box, Button, FormControl, InputLabel, MenuItem, Select, TextField } fro
 
 const CreateBill = () => {
 
-<<<<<<< HEAD
     const [allDetails, setAllDetails] = useState({
         patientName: '',
         phoneNumber: '',
@@ -15,7 +14,6 @@ const CreateBill = () => {
         diseaseName: '',
         description: '',
         paymentType: '',
-=======
     const [selectedFile, setSelectedFile] = useState(null);
     const [hovered, setHovered] = useState(false);
     const [showInvoiceTheme, setShowInvoiceTheme] = useState(false); // Define showInvoiceTheme
@@ -23,7 +21,6 @@ const CreateBill = () => {
         hospitalName: '',
         text: '',
         billNumber: '',
->>>>>>> 5caa8018c2ff9db2753c8e3c38757337e83f4ded
         billDate: '',
         billTime: '',
         billNumber: '',
@@ -42,8 +39,6 @@ const CreateBill = () => {
         }));
     };
 
-<<<<<<< HEAD
-=======
     const handleMouseEnter = () => {
         setHovered(true);
     };
@@ -56,7 +51,6 @@ const CreateBill = () => {
         setShowInvoiceTheme(!showInvoiceTheme);
     };
 
->>>>>>> 5caa8018c2ff9db2753c8e3c38757337e83f4ded
     return (
         <div className="flex h-screen">
             <Sidebar />
@@ -64,7 +58,6 @@ const CreateBill = () => {
                 <Navbar currentPage="Billing & Payment" />
                 <Box className="p-6" sx={{ width: '100%' }}>
                     <div className="p-6 bg-white shadow rounded-lg">
-<<<<<<< HEAD
                         <div className="flex justify-between items-center mb-0">
                             <h2 className="text-2xl font-semibold">Create Bill</h2>
                         </div>
@@ -519,7 +512,6 @@ const CreateBill = () => {
                             </Button>
                         </div>
                     </Box>
-=======
                         <div className="flex justify-between items-center mb-9">
                             <h2 className="text-2xl font-semibold">Edit Invoice Design</h2>
                             {!showInvoiceTheme ? (
@@ -590,7 +582,6 @@ const CreateBill = () => {
                             </div>
                         </Box>
                     </div>
->>>>>>> 5caa8018c2ff9db2753c8e3c38757337e83f4ded
                 </Box>
             </div>
         </div>
