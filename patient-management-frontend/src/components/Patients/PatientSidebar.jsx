@@ -64,13 +64,13 @@ const PatientSidebar = () => {
                         <NavLink
                             to={item.path}
                             className={`relative flex items-center px-4 py-3 text-gray-700 font-semibold ${activeTab === item.label
-                                    ? "text-customBlue"
-                                    : "hover:text-customBlue"
+                                    ? "text-sky-500"
+                                    : "hover:text-sky-500"
                                 } group`}
                         //   onClick={() => handleMenuClick(item.label, item.path)}
                         >
                             <item.icon
-                                className={`mr-3 transition duration-300 z-20 relative ${activeTab === item.label ? "text-customBlue" : "text-gray-500"
+                                className={`mr-3 transition duration-300 z-20 relative ${activeTab === item.label ? "text-sky-500" : "text-gray-500"
                                     }`}
                             />
                             <span className="z-20 relative">{item.label}</span>
@@ -84,7 +84,7 @@ const PatientSidebar = () => {
                             ></div>
 
                             <div
-                                className={`absolute top-50 right-0 h-10 bg-customBlue ${activeTab === item.label
+                                className={`absolute top-50 right-0 h-10 bg-sky-500 ${activeTab === item.label
                                         ? "w-2 opacity-100"
                                         : "group-hover:w-2 opacity-0"
                                     } rounded-tl-lg rounded-bl-lg transition-all duration-300 clip-button z-10`}
@@ -109,7 +109,7 @@ const PatientSidebar = () => {
                         You have to fill up the form to be admitted to the Hospital.
                     </p>
                     <NavLink to={'/patient/appointment-booking'}>
-                        <button className="w-full bg-customBlue text-white py-2 rounded-md">
+                        <button className="w-full bg-sky-500 text-white py-2 rounded-md">
                             Appointment
                         </button>
                     </NavLink>
