@@ -43,6 +43,7 @@ import DoctorChangePassword from './components/DoctorPanel/DoctorChangePassword'
 import DoctorTerms from './components/DoctorPanel/DoctorTerms';
 import DoctorPrivacy from './components/DoctorPanel/DoctorPrivacy';
 import AppoinmentManagement from './components/DoctorPanel/AppoinmentManagement';
+import TeleAccess from './components/Patients/TeleAccess';
 
 function App() {
   return (
@@ -60,7 +61,7 @@ function App() {
         <Route path="/edit-profile" element={<EditProfile />} />
         <Route path="/change-password" element={<ChangePassword />} />
         <Route path="/terms-condition" element={<TermsCondition />} />
-        <Route path='/privacy-policy' element={<PrivacyPolicy />} />
+        <Route path='/privacy-policy' element={<PrivacyPolicy />}/>
 
         <Route path='/patient' element={<Patient />} />
         <Route path='/billing' element={<Billing />} />
@@ -105,6 +106,7 @@ function App() {
         <Route path="/medical-history" element={<MedicalHistory />} />
         <Route path="/patient-appointment" element={<AppointmentBookingPage />} />
         <Route path="/prescription-acess" element={<PrescriptionAccessPage />} />
+        <Route path="/tele-acess" element={<TeleAccess />} />
       </Routes>
     </Router>
   );

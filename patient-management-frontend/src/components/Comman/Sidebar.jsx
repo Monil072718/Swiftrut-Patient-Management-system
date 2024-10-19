@@ -56,8 +56,8 @@ const Sidebar = () => {
             }}
         >
             {/* Logo */}
-            <div className="flex items-center justify-center p-5">
-            <img src={logo} alt="Logo" className="w-48 h-auto" />
+            <div className="flex items-center justify-center p-10">
+                <img src={logo} alt="Logo" className="w-48 h-auto" />
             </div>
 
             {/* Menu Items */}

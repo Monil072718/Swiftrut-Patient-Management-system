@@ -2,7 +2,7 @@ import React from 'react';
 import { Box } from '@mui/material';
 import Sidebar from '../../Comman/Sidebar';
 import Navbar from '../../Comman/Navbar';
-import logo from '../../../assets/Images/logo.png';
+// import logo from '../../../assets/Images/logo.png';
 
 const BillDetails = ({ bill }) => {
     // Default structure for the bill to avoid errors
@@ -23,7 +23,7 @@ const BillDetails = ({ bill }) => {
                             {/* Header */}
                             <div className="flex justify-between items-center">
                                 <div>
-                                    <img src={logo} alt="Hospital Logo" className="h-12" />
+                                    {/* <img src={logo} alt="Hospital Logo" className="h-12" /> */}
                                     <h2 className="text-lg font-semibold">Hospital Name</h2>
                                     <p className="text-sm text-gray-500">Tagline here</p>
                                 </div>
