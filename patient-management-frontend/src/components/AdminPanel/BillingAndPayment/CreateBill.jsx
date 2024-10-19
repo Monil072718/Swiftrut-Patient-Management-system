@@ -7,7 +7,6 @@ import Sidebar from '../../Comman/Sidebar';
 
 const CreateBill = () => {
     const navigate = useNavigate();
-
     const [selectedFile, setSelectedFile] = useState(null);
     const [hovered, setHovered] = useState(false);
     const [showInvoiceTheme, setShowInvoiceTheme] = useState(false); // Define showInvoiceTheme

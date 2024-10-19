@@ -26,6 +26,7 @@ import TestReportPage from './components/Patients/TestReportPage';
 import MedicalHistory from './components/Patients/MedicalHistory';
 import AppointmentBookingPage from './components/Patients/AppointmentBookingPage';
 import PrescriptionAccessPage from './components/Patients/PrescriptionAccessPage';
+import TeleAccess from './components/Patients/TeleAccess';
 
 function App() {
   return (
@@ -58,6 +59,7 @@ function App() {
         <Route path="/medical-history" element={<MedicalHistory />} />
         <Route path="/patient-appointment" element={<AppointmentBookingPage />} />
         <Route path="/prescription-acess" element={<PrescriptionAccessPage />} />
+        <Route path="/tele-acess" element={<TeleAccess />} />
       </Routes>
     </Router>
   );
