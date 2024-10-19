@@ -1,11 +1,12 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Sidebar from '../../Comman/Sidebar';
 import Navbar from '../../Comman/Navbar';
 import { Box, Button, FormControl, InputLabel, MenuItem, Select, TextField } from '@mui/material';
 
-const CreateBill = () => {
+const EditBill = () => {
 
-    const [allDetails, setAllDetails] = useState({
+    const [billDetails, setBillDetails] = useState({
         patientName: '',
         phoneNumber: '',
         gender: '',
@@ -21,69 +22,97 @@ const CreateBill = () => {
         tax: '',
         amount: '',
         totalAmount: '',
-        address: '',
+        address: ''
     });
 
-    const handlePatientChange = (event) => {
-        const { name, value } = event.target;
-        setAllDetails((prevDetails) => ({
+    useEffect(() => {
+        // Fetch the bill data from API or state
+        // Example:
+        const fetchedBill = {
+            patientName: 'John Doe',
+            phoneNumber: '1234567890',
+            gender: 'Male',
+            age: '30',
+            doctorName: 'Dr. Smith',
+            diseaseName: 'Flu',
+            description: 'Severe cold and cough',
+            paymentType: 'Online',
+            billDate: '2024-10-16',
+            billTime: '10:30 AM',
+            billNumber: 'INV00123',
+            discount: '10%',
+            tax: '5%',
+            amount: '500',
+            totalAmount: '550',
+            address: '123 Main St, City'
+        };
+        setBillDetails(fetchedBill);
+    }, []);
+
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setBillDetails((prevDetails) => ({
             ...prevDetails,
-            [name]: value,
+            [name]: value
         }));
     };
 
+    const handleSave = () => {
+        // Handle the save action, maybe an API call to update the bill details
+        console.log('Bill details saved', billDetails);
+    };
+
     return (
-        <div className="flex h-screen">
-            <Sidebar />
-            <div className="flex-1 flex flex-col">
-                <Navbar currentPage="Billing & Payment" />
-                <Box className="p-6" sx={{ width: '100%' }}>
-                    <div className="p-6 bg-white shadow rounded-lg">
-                        <div className="flex justify-between items-center mb-0">
-                            <h2 className="text-2xl font-semibold">Create Bill</h2>
-                        </div>
-                    </div>
-                    <Box className="p-6 bg-white shadow rounded-lg">
-                        <div className="grid grid-cols-10 gap-6 items-start">
-                            <div className="col-span-10 grid grid-cols-12  gap-4">
-                                {/* Row-1 */}
+        <div className="main">
+            <div className="flex h-screen">
+                <Sidebar />
+                <div className="flex-1 flex flex-col shadow-none">
+                    <Navbar currentPage="Billing & Payment" />
+                    <Box className="p-6" sx={{ width: '100%' }}>
+                        <div className="p-6 bg-white shadow rounded-lg">
+                            <h3 className="text-2xl font-semibold mb-10" sx={{ fontWeight: '600', fontFamily: 'lato' }}>Edit Bill</h3>
+                            <Box
+                                sx={{
+                                    display: 'grid',
+                                    gridTemplateColumns: 'repeat(4, 1fr)',
+                                    gap: 4
+                                }}
+                            >
                                 <TextField
-                                    className="col-span-3"
-                                    fullWidth
                                     label="Patient Name"
                                     name="patientName"
-                                    value={setAllDetails.patientName}
-                                    onChange={handlePatientChange}
-                                    variant="outlined"
+                                    value={billDetails.patientName}
+                                    onChange={handleChange}
+                                    fullWidth
+                                    required
                                     InputLabelProps={{
                                         shrink: true,
                                         style: {
                                             textDecoration: 'none',
-                                            color: '#000',
+                                            color: 'inherit',
                                             fontWeight: '600',
                                             fontFamily: 'lato'
                                         },
                                     }}
                                 />
                                 <TextField
-                                    className="col-span-3"
-                                    fullWidth
                                     label="Phone Number"
                                     name="phoneNumber"
-                                    value={setAllDetails.phoneNumber}
-                                    onChange={handlePatientChange}
-                                    variant="outlined"
+                                    value={billDetails.phoneNumber}
+                                    onChange={handleChange}
+                                    fullWidth
+                                    required
                                     InputLabelProps={{
                                         shrink: true,
                                         style: {
                                             textDecoration: 'none',
-                                            color: '#000',
+                                            color: 'inherit',
                                             fontWeight: '600',
                                             fontFamily: 'lato'
                                         },
                                     }}
                                 />
-                                <FormControl className='col-span-3' fullWidth required>
+                                <FormControl fullWidth required>
                                     <InputLabel
                                         shrink
                                         style={{
@@ -97,8 +126,8 @@ const CreateBill = () => {
                                     </InputLabel>
                                     <Select
                                         name="gender"
-                                        value={allDetails.gender}
-                                        onChange={handlePatientChange}
+                                        value={billDetails.gender}
+                                        onChange={handleChange}
                                         fullWidth
                                         inputProps={{
                                             style: {
@@ -171,14 +200,14 @@ const CreateBill = () => {
                                         </MenuItem>
                                     </Select>
                                 </FormControl>
+
                                 <TextField
-                                    className="col-span-3"
-                                    fullWidth
                                     label="Age"
                                     name="age"
-                                    value={setAllDetails.age}
-                                    onChange={handlePatientChange}
-                                    variant="outlined"
+                                    value={billDetails.age}
+                                    onChange={handleChange}
+                                    fullWidth
+                                    required
                                     InputLabelProps={{
                                         shrink: true,
                                         style: {
@@ -189,15 +218,13 @@ const CreateBill = () => {
                                         },
                                     }}
                                 />
-                                {/* Row-2 */}
                                 <TextField
-                                    className="col-span-3"
-                                    fullWidth
                                     label="Doctor Name"
                                     name="doctorName"
-                                    value={setAllDetails.doctorName}
-                                    onChange={handlePatientChange}
-                                    variant="outlined"
+                                    value={billDetails.doctorName}
+                                    onChange={handleChange}
+                                    fullWidth
+                                    required
                                     InputLabelProps={{
                                         shrink: true,
                                         style: {
@@ -209,13 +236,12 @@ const CreateBill = () => {
                                     }}
                                 />
                                 <TextField
-                                    className="col-span-3"
-                                    fullWidth
                                     label="Disease Name"
                                     name="diseaseName"
-                                    value={setAllDetails.diseaseName}
-                                    onChange={handlePatientChange}
-                                    variant="outlined"
+                                    value={billDetails.diseaseName}
+                                    onChange={handleChange}
+                                    fullWidth
+                                    required
                                     InputLabelProps={{
                                         shrink: true,
                                         style: {
@@ -227,13 +253,12 @@ const CreateBill = () => {
                                     }}
                                 />
                                 <TextField
-                                    className="col-span-3"
-                                    fullWidth
                                     label="Description"
                                     name="description"
-                                    value={setAllDetails.description}
-                                    onChange={handlePatientChange}
-                                    variant="outlined"
+                                    value={billDetails.description}
+                                    onChange={handleChange}
+                                    fullWidth
+                                    required
                                     InputLabelProps={{
                                         shrink: true,
                                         style: {
@@ -244,7 +269,7 @@ const CreateBill = () => {
                                         },
                                     }}
                                 />
-                                <FormControl className='col-span-3' fullWidth required>
+                                <FormControl fullWidth required>
                                     <InputLabel
                                         shrink
                                         style={{
@@ -258,8 +283,8 @@ const CreateBill = () => {
                                     </InputLabel>
                                     <Select
                                         name="paymentType"
-                                        value={allDetails.paymentType}
-                                        onChange={handlePatientChange}
+                                        value={billDetails.paymentType}
+                                        onChange={handleChange}
                                         fullWidth
                                         inputProps={{
                                             style: {
@@ -332,16 +357,15 @@ const CreateBill = () => {
                                         </MenuItem>
                                     </Select>
                                 </FormControl>
-                                {/* Row-3 */}
+
+
                                 <TextField
-                                    className="col-span-3"
-                                    fullWidth
                                     label="Bill Date"
                                     name="billDate"
-                                    value={setAllDetails.billDate}
-                                    onChange={handlePatientChange}
-                                    type="date"
-                                    variant="outlined"
+                                    value={billDetails.billDate}
+                                    onChange={handleChange}
+                                    fullWidth
+                                    required
                                     InputLabelProps={{
                                         shrink: true,
                                         style: {
@@ -353,14 +377,12 @@ const CreateBill = () => {
                                     }}
                                 />
                                 <TextField
-                                    className="col-span-3"
-                                    fullWidth
                                     label="Bill Time"
                                     name="billTime"
-                                    value={setAllDetails.billTime}
-                                    onChange={handlePatientChange}
-                                    type="time"
-                                    variant="outlined"
+                                    value={billDetails.billTime}
+                                    onChange={handleChange}
+                                    fullWidth
+                                    required
                                     InputLabelProps={{
                                         shrink: true,
                                         style: {
@@ -372,13 +394,12 @@ const CreateBill = () => {
                                     }}
                                 />
                                 <TextField
-                                    className="col-span-3"
-                                    fullWidth
                                     label="Bill Number"
                                     name="billNumber"
-                                    value={setAllDetails.billNumber}
-                                    onChange={handlePatientChange}
-                                    variant="outlined"
+                                    value={billDetails.billNumber}
+                                    onChange={handleChange}
+                                    fullWidth
+                                    required
                                     InputLabelProps={{
                                         shrink: true,
                                         style: {
@@ -390,13 +411,12 @@ const CreateBill = () => {
                                     }}
                                 />
                                 <TextField
-                                    className="col-span-3"
-                                    fullWidth
                                     label="Discount"
                                     name="discount"
-                                    value={setAllDetails.discount}
-                                    onChange={handlePatientChange}
-                                    variant="outlined"
+                                    value={billDetails.discount}
+                                    onChange={handleChange}
+                                    fullWidth
+                                    required
                                     InputLabelProps={{
                                         shrink: true,
                                         style: {
@@ -407,15 +427,13 @@ const CreateBill = () => {
                                         },
                                     }}
                                 />
-                                {/* Row-4 */}
                                 <TextField
-                                    className="col-span-3"
-                                    fullWidth
                                     label="Tax"
                                     name="tax"
-                                    value={setAllDetails.tax}
-                                    onChange={handlePatientChange}
-                                    variant="outlined"
+                                    value={billDetails.tax}
+                                    onChange={handleChange}
+                                    fullWidth
+                                    required
                                     InputLabelProps={{
                                         shrink: true,
                                         style: {
@@ -427,13 +445,12 @@ const CreateBill = () => {
                                     }}
                                 />
                                 <TextField
-                                    className="col-span-3"
-                                    fullWidth
                                     label="Amount"
                                     name="amount"
-                                    value={setAllDetails.amount}
-                                    onChange={handlePatientChange}
-                                    variant="outlined"
+                                    value={billDetails.amount}
+                                    onChange={handleChange}
+                                    fullWidth
+                                    required
                                     InputLabelProps={{
                                         shrink: true,
                                         style: {
@@ -445,13 +462,12 @@ const CreateBill = () => {
                                     }}
                                 />
                                 <TextField
-                                    className="col-span-3"
-                                    fullWidth
                                     label="Total Amount"
                                     name="totalAmount"
-                                    value={setAllDetails.totalAmount}
-                                    onChange={handlePatientChange}
-                                    variant="outlined"
+                                    value={billDetails.totalAmount}
+                                    onChange={handleChange}
+                                    fullWidth
+                                    required
                                     InputLabelProps={{
                                         shrink: true,
                                         style: {
@@ -463,13 +479,12 @@ const CreateBill = () => {
                                     }}
                                 />
                                 <TextField
-                                    className="col-span-3"
-                                    fullWidth
                                     label="Address"
                                     name="address"
-                                    value={setAllDetails.address}
-                                    onChange={handlePatientChange}
-                                    variant="outlined"
+                                    value={billDetails.address}
+                                    onChange={handleChange}
+                                    fullWidth
+                                    required
                                     InputLabelProps={{
                                         shrink: true,
                                         style: {
@@ -480,23 +495,20 @@ const CreateBill = () => {
                                         },
                                     }}
                                 />
-
-                            </div>
+                            </Box>
                             <Button
-                                type="submit"
                                 variant="contained"
-                                color="primary"
-                                fullWidth
-                                style={{ backgroundColor: '#0EABEB' }}
+                                onClick={handleSave}
+                                sx={{ mt: 3, backgroundColor: "#0EABEB", fontFamily: 'lato', fontWeight: '600', color: "fff" }}
                             >
                                 Save
                             </Button>
                         </div>
                     </Box>
-                </Box>
+                </div>
             </div>
         </div>
     )
 }
 
-export default CreateBill;
+export default EditBill;

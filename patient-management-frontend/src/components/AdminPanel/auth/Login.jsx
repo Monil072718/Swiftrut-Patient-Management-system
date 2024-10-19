@@ -1,21 +1,22 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
-import { Box, Typography, TextField, Checkbox, FormControlLabel, Button } from '@mui/material';
+import { Box, Typography, TextField, Checkbox, FormControlLabel, Button, Radio } from '@mui/material';
 
 function Login() {
   const [emailOrPhone, setEmailOrPhone] = useState('');
+  const [emailError, setEmailError] = useState('');
   const [password, setPassword] = useState('');
   const [rememberMe, setRememberMe] = useState(false);
   const [error, setError] = useState('');
   const navigate = useNavigate();
 
+
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
       const response = await axios.post('http://localhost:5500/api/auth/login', {
-        email: emailOrPhone, // Use emailOrPhone for email login
-        password
+        email: emailOrPhone,
       });
       localStorage.setItem('token', response.data.token);
       navigate('/dashboard');
@@ -26,8 +27,15 @@ function Login() {
 
   const handleChange = (e) => {
     const { name, value, checked } = e.target;
+
     if (name === 'emailOrPhone') {
       setEmailOrPhone(value);
+      const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (value && !emailPattern.test(value)) {
+        setEmailError('Please enter a valid email address');
+      } else {
+        setEmailError('');
+      }
     } else if (name === 'password') {
       setPassword(value);
     } else if (name === 'rememberMe') {
@@ -40,73 +48,139 @@ function Login() {
       {/* Left Section: Form */}
       <div className="w-full md:w-1/2 flex items-center justify-center bg-gray-100">
         <Box className="bg-white p-8 rounded-2xl shadow-lg w-1/2">
-          <Typography variant="h4" className="mb-[20px] font-lato font-semibold">
+          <Typography variant="h4" className="mb-[20px]" style={{ fontFamily: 'Lato', fontWeight: '600', color: '#000' }}>
             Login
           </Typography>
           {error && <Typography color="error" className="mb-4">{error}</Typography>}
           <form onSubmit={handleLogin} className='mt-4'>
-            {/* Email or Phone */}
             <div className="mb-4">
               <TextField
-                label="Email or Phone"
-                name="emailOrPhone"
-                variant="outlined"
                 fullWidth
-                required
+                label="Emai Or Phone"
                 value={emailOrPhone}
-                onChange={handleChange}
-                placeholder="Enter email or phone"
+                onChange={(e) => setEmailOrPhone(e.target.value)}
+                placeholder="Enter Email "
+                variant="outlined"
+                error={!!emailError}
+                helperText={emailError} //
+                InputLabelProps={{
+                  shrink: true,
+                  style: {
+                    textDecoration: 'none',
+                    color: 'inherit',
+                    fontWeight: '600',
+                    fontFamily: 'lato',
+                    color: '#030229'
+                  },
+                }}
               />
             </div>
 
             {/* Password */}
             <div className="mb-4">
               <TextField
-                label="Password"
-                name="password"
-                type="password"
-                variant="outlined"
                 fullWidth
-                required
+                label="Forgot Password"
+                name='password'
                 value={password}
                 onChange={handleChange}
-                placeholder="Enter your password"
+                placeholder="Enter Password"
+                variant="outlined"
+                InputLabelProps={{
+                  shrink: true,
+                  style: {
+                    textDecoration: 'none',
+                    color: 'inherit',
+                    fontWeight: '600',
+                    fontFamily: 'lato'
+                  },
+                }}
+
               />
             </div>
 
             {/* Remember Me and Forgot Password */}
-            <div className="flex justify-between mb-4">
+            <div className="flex justify-between items-center ">
               <FormControlLabel
                 control={
-                  <Checkbox
+                  <Radio
                     checked={rememberMe}
                     onChange={handleChange}
                     name="rememberMe"
+                    icon={
+                      <span
+                        style={{
+                          width: 20,
+                          height: 20,
+                          borderRadius: '50%',
+                          border: '2px solid #0eabeb',
+                        }}
+                      ></span>
+                    }
+                    checkedIcon={
+                      <span
+                        style={{
+                          width: 20,
+                          height: 20,
+                          borderRadius: '50%',
+                          backgroundColor: '#0eabeb',
+                          display: 'flex',
+                          justifyContent: 'center',
+                          alignItems: 'center',
+                          color: '#fff',
+                        }}
+                      >
+                        ✓
+                      </span>
+                    }
+                    sx={{
+                      '& .MuiSvgIcon-root': { fontSize: 20 },
+                    }}
                   />
                 }
-                label="Remember Me"
+                label={
+                  <span style={{ fontFamily: 'Lato', fontWeight: '600', fontSize: '12px' }}>
+                    Remember Me
+                  </span>
+                }
               />
-              <Link to="/forgot-password" variant="body2">
+              <Link
+                to="/forgot-password"
+                variant="body2"
+                style={{ fontFamily: 'Lato', fontWeight: '600', fontSize: '12px', color: '#5678E9' }}
+              >
                 Forgot Password?
               </Link>
             </div>
+
 
             {/* Login Button */}
             <Button
               type="submit"
               fullWidth
               variant="contained"
-              color="primary"
               className="mb-4"
+              sx={{
+                backgroundColor: emailOrPhone ? '#0eabeb' : '#F6F8FB',
+                color: emailOrPhone ? '#fff' : '#4F4F4F',
+                boxShadow: 'none',
+                '&:hover': {
+                  backgroundColor: emailOrPhone ? '#0eabeb' : '#F6F8FB',
+                  boxShadow: 'none',
+                },
+                borderRadius: '10px',
+                fontFamily: 'Lato',
+                 fontWeight: '600'
+              }}
             >
               Login
             </Button>
 
             {/* Don't have an account? */}
-            <Typography className="text-center">
-              Don’t have an account?{' '}
-              <Link to="/signup" className="text-blue-600">
-                Register
+            <Typography className="text-center" style={{ fontFamily: 'Lato', fontWeight: '600', fontSize: '14px', color: '#000' }}>
+              Don’t have an account ?{' '}
+              <Link to="/signup" style={{ fontFamily: 'Lato', fontWeight: '600', fontSize: '14px', color: '#5678E9' }}>
+                Registration
               </Link>
             </Typography>
           </form>

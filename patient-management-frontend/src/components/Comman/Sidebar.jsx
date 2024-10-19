@@ -1,12 +1,20 @@
 import React, { useState } from 'react';
-import { Drawer, List, ListItem, ListItemIcon, Typography, Button } from '@mui/material';
+import { Drawer, List, ListItem, ListItemIcon, Typography, Button, Box } from '@mui/material';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { Dashboard as DashboardIcon, Person as DoctorIcon, Group as PatientIcon, Payment as PaymentIcon, BarChart as AnalyticsIcon, Logout as LogoutIcon } from '@mui/icons-material';
+import {
+    Dashboard as DashboardIcon,
+    Person as DoctorIcon,
+    Group as PatientIcon,
+    Payment as PaymentIcon,
+    BarChart as AnalyticsIcon,
+    Logout as LogoutIcon,
+} from '@mui/icons-material';
+import logo from '../../assets/Images/logo.png'; 
 
 const Sidebar = () => {
     const navigate = useNavigate();
-    const location = useLocation(); // Get current location
-    const [billingOpen, setBillingOpen] = useState(false); // State to manage dropdown
+    const location = useLocation();
+    const [billingOpen, setBillingOpen] = useState(false);
 
     const menuItems = [
         { text: 'Dashboard', icon: <DashboardIcon />, path: '/' },
@@ -15,15 +23,14 @@ const Sidebar = () => {
         {
             text: 'Billing and Payment',
             icon: <PaymentIcon />,
-            path: '/billing', // Yeh path same rahega
+            path: '/billing',
             children: [
-                { text: 'Monitor Billing', path: '/billing' }, 
+                { text: 'Monitor Billing', path: '/billing' },
                 { text: 'Insurance Claims', path: '/billing/insurance' },
                 { text: 'Payment Process', path: '/billing/payment' },
             ],
         },
-        
-        { text: 'Reporting and Analytics', icon: <AnalyticsIcon />, path: '/analytics' },
+        { text: 'Reporting and Analytics', icon: <AnalyticsIcon />, path: '/reporting' },
     ];
 
     const handleMenuClick = (path) => {
@@ -31,7 +38,7 @@ const Sidebar = () => {
     };
 
     const toggleBillingDropdown = () => {
-        setBillingOpen(!billingOpen);
+        setBillingOpen((prev) => !prev);
     };
 
     return (
@@ -50,7 +57,7 @@ const Sidebar = () => {
         >
             {/* Logo */}
             <div className="flex items-center justify-center p-10">
-                <img src="assets/img/logo.png" alt="Logo" className="w-48 h-auto" />
+            <img src={logo} alt="Logo" className="w-48 h-auto" />
             </div>
 
             {/* Menu Items */}
@@ -59,13 +66,19 @@ const Sidebar = () => {
                     <React.Fragment key={item.text}>
                         <ListItem
                             button
-                            onClick={() => item.children ? toggleBillingDropdown() : handleMenuClick(item.path)}
+                            onClick={() =>
+                                item.children ? toggleBillingDropdown() : handleMenuClick(item.path)
+                            }
                             sx={{
                                 cursor: 'pointer',
                                 marginBottom: '20px',
-                                background: location.pathname === item.path ? 'linear-gradient(90deg, #0EABEB 0%, rgba(10, 186, 181, 0.05) 50%)' : 'inherit',
+                                background:
+                                    location.pathname === item.path
+                                        ? 'linear-gradient(90deg, #0EABEB 0%, rgba(10, 186, 181, 0.05) 50%)'
+                                        : 'inherit',
                                 color: location.pathname === item.path ? '#0EABEB' : '#818194',
-                                borderRight: location.pathname === item.path ? '6px solid #0EABEB ' : 'none',
+                                borderRight:
+                                    location.pathname === item.path ? '6px solid #0EABEB' : 'none',
                                 '&:hover': {
                                     backgroundColor: '#E5E7EB',
                                     color: '#0EABEB',
@@ -94,9 +107,10 @@ const Sidebar = () => {
                                 {item.text}
                             </Typography>
                         </ListItem>
+
                         {/* Dropdown Menu for Billing and Payment */}
                         {item.children && billingOpen && (
-                            <List sx={{ paddingLeft: 4 }}>
+                            <Box sx={{ paddingLeft: '32px' }}>
                                 {item.children.map((child) => (
                                     <ListItem
                                         button
@@ -105,7 +119,6 @@ const Sidebar = () => {
                                         sx={{
                                             cursor: 'pointer',
                                             marginBottom: '10px',
-                                            background: location.pathname === child.path ? '#e0f7fa' : 'inherit',
                                             color: location.pathname === child.path ? '#0EABEB' : '#818194',
                                             '&:hover': {
                                                 backgroundColor: '#E5E7EB',
@@ -125,12 +138,13 @@ const Sidebar = () => {
                                         </Typography>
                                     </ListItem>
                                 ))}
-                            </List>
+                            </Box>
                         )}
                     </React.Fragment>
                 ))}
             </List>
 
+            {/* Logout Button */}
             <div className="mt-auto p-4">
                 <Button
                     fullWidth

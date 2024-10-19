@@ -60,6 +60,7 @@ function Billing() {
                             <div className="flex space-x-4 ml-4">
                                 <Button
                                     startIcon={<DriveFileRenameOutlineIcon sx={{ color: '#0eabeb' }} />}
+                                    onClick={() => navigate('/EditInvoice')} 
                                     sx={{
                                         border: '1px solid #0eabeb',
                                         color: '#0eabeb',
@@ -72,7 +73,7 @@ function Billing() {
                                 </Button>
                                 <Button
                                     startIcon={<AddIcon />}
-                                    onClick={() => navigate('/Createbill')} 
+                                    onClick={() => navigate('/createbill')}
                                     sx={{
                                         backgroundColor: '#0eabeb',
                                         color: 'white',

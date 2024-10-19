@@ -88,7 +88,7 @@ const Signup = () => {
       {/* Left Section: Form */}
       <div className="w-full md:w-1/2 flex items-center justify-center bg-gray-100">
         <Box className="bg-white p-8 rounded-2xl shadow-lg w-1/2">
-          <Typography variant="h4" className="mb-4 font-lato font-semibold">
+          <Typography variant="h4" className="mb-[4] " style={{ fontFamily: 'Lato', fontWeight: '600', color: '#000' }}>
             Registration
           </Typography>
           {error && <Typography color="error" className="mb-4">{error}</Typography>}
@@ -96,27 +96,47 @@ const Signup = () => {
             {/* First Name and Last Name */}
             <div className="flex flex-col md:flex-row md:space-x-4 mb-4">
               <div className="flex-1">
-                <Typography variant="body1" className="mb-2 font-lato font-semibold">First Name</Typography>
                 <TextField
                   fullWidth
                   name="firstName"
                   variant="outlined"
+                  label="First Name"
                   placeholder="Enter First Name"
                   value={formData.firstName}
                   onChange={handleChange}
                   required
+                  InputLabelProps={{
+                    shrink: true,
+                    style: {
+                      textDecoration: 'none',
+                      color: 'inherit',
+                      fontWeight: '600',
+                      fontFamily: 'lato',
+                      color: '#030229'
+                    },
+                  }}
                 />
               </div>
               <div className="flex-1">
-                <Typography variant="body1" className="mb-2 font-lato font-semibold">Last Name</Typography>
                 <TextField
                   fullWidth
                   name="lastName"
+                  label="Last Name"
                   variant="outlined"
                   placeholder="Enter Last Name"
                   value={formData.lastName}
                   onChange={handleChange}
                   required
+                  InputLabelProps={{
+                    shrink: true,
+                    style: {
+                      textDecoration: 'none',
+                      color: 'inherit',
+                      fontWeight: '600',
+                      fontFamily: 'lato',
+                      color: '#030229'
+                    },
+                  }}
                 />
               </div>
             </div>
@@ -124,29 +144,48 @@ const Signup = () => {
             {/* Email and Phone Number */}
             <div className="flex flex-col md:flex-row md:space-x-4 mb-4">
               <div className="flex-1">
-                <Typography variant="body1" className="mb-2 font-lato">Email Address</Typography>
                 <TextField
                   fullWidth
                   name="email"
-                  type="email"
                   variant="outlined"
+                  label="Email Address"
                   placeholder="Enter Email Address"
                   value={formData.email}
                   onChange={handleChange}
                   required
+                  InputLabelProps={{
+                    shrink: true,
+                    style: {
+                      textDecoration: 'none',
+                      color: 'inherit',
+                      fontWeight: '600',
+                      fontFamily: 'lato',
+                      color: '#030229'
+                    },
+                  }}
                 />
               </div>
               <div className="flex-1">
-                <Typography variant="body1" className="mb-2 font-lato">Phone Number</Typography>
                 <TextField
                   fullWidth
                   name="phone"
                   type="tel"
+                  label="Phone Number"
                   variant="outlined"
                   placeholder="Enter Phone Number"
                   value={formData.phone}
                   onChange={handleChange}
                   required
+                  InputLabelProps={{
+                    shrink: true,
+                    style: {
+                      textDecoration: 'none',
+                      color: 'inherit',
+                      fontWeight: '600',
+                      fontFamily: 'lato',
+                      color: '#030229'
+                    },
+                  }}
                 />
               </div>
             </div>
@@ -154,54 +193,89 @@ const Signup = () => {
             {/* Country, State, City */}
             <div className="flex flex-col md:flex-row md:space-x-4 mb-4">
               <div className="flex-1">
-                <Typography variant="body1" className="mb-2 font-lato">Country</Typography>
                 <TextField
                   select
                   fullWidth
                   name="country"
                   variant="outlined"
+                  label="Country"
                   value={formData.country}
                   onChange={handleChange}
                   required
+                  InputLabelProps={{
+                    shrink: true,
+                    style: {
+                      textDecoration: 'none',
+                      color: 'inherit',
+                      fontWeight: '600',
+                      fontFamily: 'lato',
+                      color: '#030229'
+                    },
+                  }}
                 >
-                  <MenuItem value="India">India</MenuItem>
-                  <MenuItem value="USA">USA</MenuItem>
-                  <MenuItem value="UK">UK</MenuItem>
+                  <MenuItem sx={{ py: 1, px: 2, fontFamily: 'Lato', '&.Mui-selected': { color: '#0EABEB', backgroundColor: 'transparent', }, }} value="India">India</MenuItem>
+                  <MenuItem sx={{ py: 1, px: 2, fontFamily: 'Lato', '&.Mui-selected': { color: '#0EABEB', backgroundColor: 'transparent', }, }} value="USA">USA</MenuItem>
+                  <MenuItem sx={{ py: 1, px: 2, fontFamily: 'Lato', '&.Mui-selected': { color: '#0EABEB', backgroundColor: 'transparent', }, }} value="UK">UK</MenuItem>
                 </TextField>
               </div>
               <div className="flex-1">
-                <Typography variant="body1" className="mb-2 font-lato">State</Typography>
                 <TextField
                   select
                   fullWidth
                   name="state"
                   variant="outlined"
+                  label="State"
                   value={formData.state}
                   onChange={handleChange}
                   required
+                  InputLabelProps={{
+                    shrink: true,
+                    style: {
+                      textDecoration: 'none',
+                      color: 'inherit',
+                      fontWeight: '600',
+                      fontFamily: 'lato',
+                      color: '#030229'
+                    },
+                  }}
                 >
-                  <MenuItem value="Maharashtra">Maharashtra</MenuItem>
-                  <MenuItem value="Gujarat">Gujarat</MenuItem>
-                  <MenuItem value="Karnataka">Karnataka</MenuItem>
+                  <MenuItem sx={{ py: 1, px: 2, fontFamily: 'Lato', '&.Mui-selected': { color: '#0EABEB', backgroundColor: 'transparent', }, }} value="Maharashtra">Maharashtra</MenuItem>
+                  <MenuItem sx={{ py: 1, px: 2, fontFamily: 'Lato', '&.Mui-selected': { color: '#0EABEB', backgroundColor: 'transparent', }, }} value="Gujarat">Gujarat</MenuItem>
+                  <MenuItem sx={{ py: 1, px: 2, fontFamily: 'Lato', '&.Mui-selected': { color: '#0EABEB', backgroundColor: 'transparent', }, }} value="Karnataka">Karnataka</MenuItem>
                 </TextField>
               </div>
               <div className="flex-1">
-                <Typography variant="body1" className="mb-2 font-lato">City</Typography>
                 <TextField
+                  select
                   fullWidth
                   name="city"
                   variant="outlined"
                   placeholder="Enter City"
+                  label="City"
                   value={formData.city}
                   onChange={handleChange}
                   required
-                />
+                  InputLabelProps={{
+                    shrink: true,
+                    style: {
+                      textDecoration: 'none',
+                      color: 'inherit',
+                      fontWeight: '600',
+                      fontFamily: 'Lato',
+                      color: '#030229'
+                    },
+                  }}
+                >
+                  <MenuItem sx={{ py: 1, px: 2, fontFamily: 'Lato', '&.Mui-selected': { color: '#0EABEB', backgroundColor: 'transparent' } }} value="Surat">Surat</MenuItem>
+                  <MenuItem sx={{ py: 1, px: 2, fontFamily: 'Lato', '&.Mui-selected': { color: '#0EABEB', backgroundColor: 'transparent' } }} value="Ahmedabad">Ahmedabad</MenuItem>
+                  <MenuItem sx={{ py: 1, px: 2, fontFamily: 'Lato', '&.Mui-selected': { color: '#0EABEB', backgroundColor: 'transparent' } }} value="Gandhinagar">Gandhinagar</MenuItem>
+                </TextField>
               </div>
+
             </div>
 
             {/* Hospital Name */}
             <div className="mb-4">
-              <Typography variant="body1" className="mb-2 font-lato">Hospital Name</Typography>
               <TextField
                 select
                 fullWidth
@@ -210,10 +284,21 @@ const Signup = () => {
                 placeholder="Select Hospital"
                 value={formData.hospital}
                 onChange={handleChange}
+                label="Hospital Name"
                 required
+                InputLabelProps={{
+                  shrink: true,
+                  style: {
+                    textDecoration: 'none',
+                    color: 'inherit',
+                    fontWeight: '600',
+                    fontFamily: 'lato',
+                    color: '#030229'
+                  },
+                }}
               >
                 {hospitals.map((hospital) => (
-                  <MenuItem key={hospital} value={hospital}>
+                  <MenuItem sx={{ py: 1, px: 2, fontFamily: 'Lato', '&.Mui-selected': { color: '#0EABEB', backgroundColor: 'transparent', }, }} key={hospital} value={hospital}>
                     {hospital}
                   </MenuItem>
                 ))}
@@ -221,10 +306,10 @@ const Signup = () => {
             </div>
 
             <div className="mb-4">
-              <Typography variant="body1" className="mb-2 font-lato">Password</Typography>
               <TextField
                 fullWidth
                 name="password"
+                label="Password"
                 type={showPassword ? 'text' : 'password'}
                 variant="outlined"
                 placeholder="Enter Password"
@@ -232,6 +317,14 @@ const Signup = () => {
                 onChange={handleChange}
                 required
                 InputProps={{
+                  shrink: true,
+                  style: {
+                    textDecoration: 'none',
+                    color: 'inherit',
+                    fontWeight: '600',
+                    fontFamily: 'lato',
+                    color: '#030229'
+                  },
                   endAdornment: (
                     <IconButton onClick={handleClickShowPassword}>
                       {showPassword ? <VisibilityOff /> : <Visibility />}
@@ -243,7 +336,6 @@ const Signup = () => {
 
             {/* Confirm Password */}
             <div className="mb-4">
-              <Typography variant="body1" className="mb-2 font-lato">Confirm Password</Typography>
               <TextField
                 fullWidth
                 name="confirmPassword"
