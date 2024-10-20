@@ -1,7 +1,7 @@
 import React from "react";
 import { FaDownload } from "react-icons/fa";
-import logo from "../../assets/Images/logo.png";
-import signature from "../../assets/Images/signature.png";
+import logo from "../../assets/images/logo.png";
+import signature from "../../assets/images/signature.png";
 
 const PrescritionModal = ({ closeModal }) => {
     return (

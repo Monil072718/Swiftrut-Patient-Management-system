@@ -8,8 +8,8 @@ import {
     FaFileInvoiceDollar,
 } from "react-icons/fa";
 import { HiOutlineLogout } from "react-icons/hi";
-import logo from "../../assets/Images/logo.png";
-import elements_1 from "../../assets/Images/elements_1.png"
+import logo from "../../assets/images/logo.png";
+import elements_1 from "../../assets/images/elements_1.png"
 // import { useBreadcrumb } from "../../context/BreadcrumbContext";
 
 const PatientSidebar = () => {

@@ -9,7 +9,7 @@ import {
     BarChart as AnalyticsIcon,
     Logout as LogoutIcon,
 } from '@mui/icons-material';
-import logo from '../../assets/Images/logo.png'; 
+import logo from '../../assets/images/logo.png'; 
 
 const Sidebar = () => {
     const navigate = useNavigate();

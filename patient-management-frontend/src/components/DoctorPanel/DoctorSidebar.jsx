@@ -7,7 +7,7 @@ import PermPhoneMsgIcon from '@mui/icons-material/PermPhoneMsg';
 import QuestionAnswerIcon from '@mui/icons-material/QuestionAnswer';
 import { MdOutlineEventNote } from "react-icons/md";
 import LogoutIcon from '@mui/icons-material/Logout';
-import logo from '../../assets/Images/logo.png'; 
+import logo from '../../assets/images/logo.png'; 
 
 const DoctorSidebar = () => {
     const navigate = useNavigate();
