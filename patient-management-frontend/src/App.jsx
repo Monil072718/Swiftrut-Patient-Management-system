@@ -25,7 +25,7 @@ import Payment from './components/AdminPanel/BillingAndPayment/Payment';
 import EditBill from './components/AdminPanel/BillingAndPayment/EditBill';
 import BillDetails from './components/AdminPanel/BillingAndPayment/BillDetails';
 import InsuranceClaims from './components/AdminPanel/BillingAndPayment/InsuranceClaims';
-import Reporting from './components/AdminPanel/BillingAndPayment/Reporting';  
+import Reporting from './components/AdminPanel/BillingAndPayment/Reporting';
 import OtpVerification from './components/AdminPanel/auth/OtpVerification';
 
 
@@ -37,6 +37,12 @@ import TestReportPage from './components/Patients/TestReportPage';
 import MedicalHistory from './components/Patients/MedicalHistory';
 import AppointmentBookingPage from './components/Patients/AppointmentBookingPage';
 import PrescriptionAccessPage from './components/Patients/PrescriptionAccessPage';
+import DoctorProfile from './components/DoctorPanel/DoctorProfile';
+import DoctorEditProfile from './components/DoctorPanel/DoctorEditProfile';
+import DoctorChangePassword from './components/DoctorPanel/DoctorChangePassword';
+import DoctorTerms from './components/DoctorPanel/DoctorTerms';
+import DoctorPrivacy from './components/DoctorPanel/DoctorPrivacy';
+import AppoinmentManagement from './components/DoctorPanel/AppoinmentManagement';
 import TeleAccess from './components/Patients/TeleAccess';
 
 function App() {
@@ -57,14 +63,14 @@ function App() {
         <Route path="/terms-condition" element={<TermsCondition />} />
         <Route path='/privacy-policy' element={<PrivacyPolicy />}/>
 
-        <Route path='/patient' element={<Patient/>} />
-        <Route path='/billing' element={<Billing/>} />       
+        <Route path='/patient' element={<Patient />} />
+        <Route path='/billing' element={<Billing />} />
         <Route path="/EditInvoice" element={<EditInvoice />} />
-        <Route path="/invoicethemes" element={<InvoiceThemes />}/> 
-        <Route path='/createbill' element={<CreateBill/>} />
+        <Route path="/invoicethemes" element={<InvoiceThemes />} />
+        <Route path='/createbill' element={<CreateBill />} />
 
         <Route path='/billing/payment' element={<Payment />} />
-        <Route path='/editbill' element={<EditBill/>} />
+        <Route path='/editbill' element={<EditBill />} />
         <Route path="/bill-details/:id" element={<BillDetails />} />
         <Route path="/billing/insurance" element={<InsuranceClaims />} />
         <Route path='/reporting' element={<Reporting />} />
@@ -72,6 +78,7 @@ function App() {
         <Route path="/privacy-policy" element={<PrivacyPolicy />} />
         <Route path="/doc-appointment" element={<DoctorAppointment />} />
         <Route path="/search" element={<SearchResult />} />
+
         <Route path="/doctormanagement" element={<DoctorManagement />} />
         <Route path="/onsite" element={<DoctorOnSite />} />
         <Route path="/addnewdoctor" element={<AddNewDoctor />} />
@@ -79,6 +86,19 @@ function App() {
         <Route path="/patient" element={<Patient />} />
         <Route path="/billing" element={<Billing />} />
         <Route path="/createbill" element={<CreateBill />} />
+
+
+        {/* Doctor Routes */}
+        <Route path='appoinmentmanagement' element={<AppoinmentManagement/>} />
+        <Route path='/doctorprofile' element={<DoctorProfile />} />
+        <Route path='/doctoredit' element={<DoctorEditProfile />} />
+        <Route path='/doctorchangepsd' element={<DoctorChangePassword />} />
+        <Route path='/doctorterms' element={<DoctorTerms />} />
+        <Route path='/doctorprivacy' element={<DoctorPrivacy />} />
+
+
+        
+        {/* patient routes */}
         <Route path="/patient-appoitment" element={<PatientAppointment />} />
         <Route path="/patient-edit" element={<PatientEditProfile />} />
         <Route path="/prescription" element={<PrescriptionPage />} />

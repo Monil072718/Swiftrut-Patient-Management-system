@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 import Navbar from '../../../components/Comman/Navbar';
 import Sidebar from '../../../components/Comman/Sidebar';
-import add from '../../../assets/images/add.png'
+import add from '../../../assets/Images/add.png'
 
 const AddNewDoctor = () => {
     const fileInputRef = useRef(null);

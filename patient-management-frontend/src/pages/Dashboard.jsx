@@ -4,13 +4,15 @@ import { Search as SearchIcon, Notifications as NotificationsIcon, Logout as Log
 import { Doughnut, Line } from 'react-chartjs-2';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend, LineElement, PointElement, CategoryScale, LinearScale, Filler } from 'chart.js';
 import { useNavigate } from 'react-router-dom';
-import vuesax from '../assets/images/vuesax.png';
-import add from '../assets/images/add.png';
-import user_1 from '../assets/images/user_1.png';
-import ueser_2 from '../assets/images/ueser_2.png';
-import user_3 from '../assets/images/user_3.png';
-import Sidebar from '../components/shared/Sidebar';
-import Navbar from '../components/shared/Navbar';
+import vuesax from '../assets/Images/vuesax.png';
+import add from '../assets/Images/add.png';
+import user_1 from '../assets/Images/user_1.png';
+import ueser_2 from '../assets/Images/ueser_2.png';
+import user_3 from '../assets/Images/user_3.png';
+import Sidebar from '../components/Comman/Sidebar';
+import Navbar from '../components/Comman/Navbar';
+// import Sidebar from '../components/shared/Sidebar';
+// import Navbar from '../components/shared/Navbar';
 ChartJS.register(ArcElement, Tooltip, Legend);
 ChartJS.register(LineElement, PointElement, CategoryScale, LinearScale, Tooltip, Filler);
 
@@ -103,12 +105,12 @@ function Dashboard() {
   return (
     <div className="flex h-screen">
       {/* Sidebar */}
-      <Sidebar/>
+      <Sidebar />
 
       {/* Main Content */}
       <div className="flex-1 flex flex-col">
         {/* Top Navbar */}
-        <Navbar/>
+        <Navbar />
 
         {/* Dashboard Content */}
         <div className="flex flex-wrap">

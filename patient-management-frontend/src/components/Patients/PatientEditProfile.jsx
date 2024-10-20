@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { FiCamera } from "react-icons/fi";
 import Navbar from '../../components/Comman/Navbar';
 import Sidebar from '../../components/Comman/Sidebar';
-import char_3 from '../../assets/images/char_3.png';
+import char_3 from '../../assets/Images/char_3.png';
 import PatientSidebar from './PatientSidebar';
 import PatientNavbar from './PatientNavbar';
 

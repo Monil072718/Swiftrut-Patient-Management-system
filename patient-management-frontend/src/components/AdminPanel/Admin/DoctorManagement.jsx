@@ -2,32 +2,30 @@ import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { Search as SearchIcon, Notifications as NotificationsIcon, Logout as LogoutIcon, Dashboard as DashboardIcon, Person as DoctorIcon, Group as PatientIcon, Payment as PaymentIcon, BarChart as AnalyticsIcon } from '@mui/icons-material';
 import { AppBar, Toolbar, IconButton, InputBase, Badge, Avatar, List, ListItem, ListItemText, ListItemIcon, Drawer, Button, Popover, Typography } from '@mui/material';
-import vuesax from '../../../assets/images/vuesax.png';
-import char_2 from '../../../assets/images/char_2.png';
-import gender_male from '../../../assets/images/gender_male.png';
-import edit from '../../../assets/images/edit.png';
-import eye from '../../../assets/images/eye.png';
-import remove_hel from '../../../assets/images/remove_hel.png';
-import Navbar from '../../shared/Navbar';
-import Sidebar from '../../shared/Sidebar';
+import vuesax from '../../../assets/Images/vuesax.png';
+import char_2 from '../../../assets/Images/char_2.png';
+import gender_male from '../../../assets/Images/gender_male.png';
+import edit from '../../../assets/Images/edit.png';
+import eye from '../../../assets/Images/eye.png';
+import remove_hel from '../../../assets/Images/remove_hel.png';
+import Sidebar from '../../Comman/Sidebar';
+import Navbar from '../../Comman/Navbar';
+// import Navbar from '../../comman/Navbar';
+// import Sidebar from '../../shared/Sidebar';
 
 const DoctorManagement = () => {
     const [anchorEl, setAnchorEl] = useState(null);
     const navigate = useNavigate();
-
-    const menuItems = [
-        { text: 'Dashboard', icon: <DashboardIcon /> },
-        { text: 'Doctor Management', icon: <DoctorIcon /> },
-        { text: 'Patient Management', icon: <PatientIcon /> },
-        { text: 'Billing and Payment', icon: <PaymentIcon /> },
-        { text: 'Reporting and Analytics', icon: <AnalyticsIcon /> },
-    ];
 
     const open = Boolean(anchorEl);
 
     const handleClose = () => {
         setAnchorEl(null);
     };
+
+    const handleAddNewDoctor = () => {
+        navigate('/addnewdoctor');
+      };
 
     const doctors = [
         { name: 'Dr. Marcus Philips', genderIcon: '/path/to/icon', qualification: 'MBBS', specialty: 'Internal Medicine', workingTime: '6 Hour', checkUpTime: '4 Hour', breakTime: '1 Hour' },
@@ -44,7 +42,7 @@ const DoctorManagement = () => {
             {/* Main Content */}
             <div className="flex-1 flex flex-col">
                 {/* Top Navbar */}
-                <Navbar />
+                <Navbar currentPage="Doctor Management"/>
 
                 {/* Dashboard Content */}
                 <div className="main">
@@ -60,7 +58,7 @@ const DoctorManagement = () => {
                                     />
 
                                 </div>
-                                <button className="bg-[#0EABEB] text-white font-semibold px-4 py-2 rounded-lg hover:bg-blue-600">
+                                <button onClick={handleAddNewDoctor} className="bg-[#0EABEB] text-white font-semibold px-4 py-2 rounded-lg hover:bg-blue-600">
                                     + Add New Doctor
                                 </button>
                             </div>
