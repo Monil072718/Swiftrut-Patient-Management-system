@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { Search as SearchIcon, Notifications as NotificationsIcon, Logout as LogoutIcon, Dashboard as DashboardIcon, Person as DoctorIcon, Group as PatientIcon, Payment as PaymentIcon, BarChart as AnalyticsIcon } from '@mui/icons-material';
 import { AppBar, Toolbar, IconButton, InputBase, Badge, Avatar, List, ListItem, ListItemText, ListItemIcon, Drawer, Button, Popover, Typography } from '@mui/material';
 import { Edit as EditIcon, Visibility as ViewIcon, Delete as DeleteIcon } from '@mui/icons-material';
-import vuesax from '../../../assets/Images/vuesax.png';
+import vuesax from '../../../assets/images/vuesax.png';
 
 const SearchResult = () => {
     const [anchorEl, setAnchorEl] = useState(null);

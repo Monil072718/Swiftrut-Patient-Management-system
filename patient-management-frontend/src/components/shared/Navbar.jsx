@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AppBar, Toolbar, IconButton, InputBase, Badge, Avatar, Popover, Typography } from '@mui/material';
 import { Search as SearchIcon, Notifications as NotificationsIcon } from '@mui/icons-material';
-import vuesax from '../../assets/Images/vuesax.png';
+import vuesax from '../../assets/images/vuesax.png';
 
 
 const Navbar = () => {
