@@ -44,6 +44,8 @@ import DoctorTerms from './components/DoctorPanel/DoctorTerms';
 import DoctorPrivacy from './components/DoctorPanel/DoctorPrivacy';
 import AppoinmentManagement from './components/DoctorPanel/AppoinmentManagement';
 import TeleAccess from './components/Patients/TeleAccess';
+import ChatPage from './components/Patients/ChatPage';
+import BillsPage from './components/Patients/BillsPage';
 
 function App() {
   return (
@@ -63,7 +65,6 @@ function App() {
         <Route path="/terms-condition" element={<TermsCondition />} />
         <Route path='/privacy-policy' element={<PrivacyPolicy />}/>
 
-        <Route path='/patient' element={<Patient />} />
         <Route path='/billing' element={<Billing />} />
         <Route path="/EditInvoice" element={<EditInvoice />} />
         <Route path="/invoicethemes" element={<InvoiceThemes />} />
@@ -75,7 +76,6 @@ function App() {
         <Route path="/billing/insurance" element={<InsuranceClaims />} />
         <Route path='/reporting' element={<Reporting />} />
 
-        <Route path="/privacy-policy" element={<PrivacyPolicy />} />
         <Route path="/doc-appointment" element={<DoctorAppointment />} />
         <Route path="/search" element={<SearchResult />} />
 
@@ -83,9 +83,6 @@ function App() {
         <Route path="/onsite" element={<DoctorOnSite />} />
         <Route path="/addnewdoctor" element={<AddNewDoctor />} />
         <Route path="/invoice" element={<Invoice />} />
-        <Route path="/patient" element={<Patient />} />
-        <Route path="/billing" element={<Billing />} />
-        <Route path="/createbill" element={<CreateBill />} />
 
 
         {/* Doctor Routes */}
@@ -107,6 +104,10 @@ function App() {
         <Route path="/patient-appointment" element={<AppointmentBookingPage />} />
         <Route path="/prescription-acess" element={<PrescriptionAccessPage />} />
         <Route path="/tele-acess" element={<TeleAccess />} />
+        <Route path='/patient' element={<Patient />} />
+        <Route path='/chat' element={<ChatPage />} />
+        <Route path='/bills' element={<BillsPage />} />
+
       </Routes>
     </Router>
   );
