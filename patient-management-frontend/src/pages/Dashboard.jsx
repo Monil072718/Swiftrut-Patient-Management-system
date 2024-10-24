@@ -110,7 +110,7 @@ function Dashboard() {
       {/* Main Content */}
       <div className="flex-1 flex flex-col">
         {/* Top Navbar */}
-        <Navbar />
+        <Navbar currentPage="DashBoard" />
 
         {/* Dashboard Content */}
         <div className="flex flex-wrap">
