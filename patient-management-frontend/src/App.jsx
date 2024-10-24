@@ -45,6 +45,8 @@ import DoctorPrivacy from './components/DoctorPanel/DoctorPrivacy';
 import AppoinmentManagement from './components/DoctorPanel/AppoinmentManagement';
 import TeleAccess from './components/Patients/TeleAccess';
 import AppoinmentTimeSlot from './components/DoctorPanel/AppoinmentTimeSlot';
+import PatientRecord from './components/DoctorPanel/PatientRecord';
+
 
 function App() {
   return (
@@ -91,14 +93,13 @@ function App() {
 
         {/* Doctor Routes */}
         <Route path='appoinmentmanagement' element={<AppoinmentManagement/>} />
-        <Route path='/appoinment-time-slot' element={<AppoinmentTimeSlot/>} />
+        <Route path='/appointment-time-slot' element={<AppoinmentTimeSlot/>} />
         <Route path='/doctorprofile' element={<DoctorProfile />} />
         <Route path='/doctoredit' element={<DoctorEditProfile />} />
         <Route path='/doctorchangepsd' element={<DoctorChangePassword />} />
         <Route path='/doctorterms' element={<DoctorTerms />} />
         <Route path='/doctorprivacy' element={<DoctorPrivacy />} />
-
-
+        <Route path='/patient_record' element={<PatientRecord/>}/>
         
         {/* patient routes */}
         <Route path="/patient-appoitment" element={<PatientAppointment />} />

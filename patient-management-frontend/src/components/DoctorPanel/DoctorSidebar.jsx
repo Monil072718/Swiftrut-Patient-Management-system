@@ -7,7 +7,7 @@ import PermPhoneMsgIcon from '@mui/icons-material/PermPhoneMsg';
 import QuestionAnswerIcon from '@mui/icons-material/QuestionAnswer';
 import { MdOutlineEventNote } from "react-icons/md";
 import LogoutIcon from '@mui/icons-material/Logout';
-import logo from '../../assets/images/logo.png'; 
+import logo from '../../assets/images/logo.png';
 
 const DoctorSidebar = () => {
     const navigate = useNavigate();
@@ -24,7 +24,7 @@ const DoctorSidebar = () => {
             children: [
                 { text: 'Create', path: '/create' },
                 { text: 'Manage', path: '/prescription/manage' },
-                
+
             ],
         },
         { text: 'Teleconsultation Module', icon: <PermPhoneMsgIcon />, path: '/teleconsultation' },
@@ -55,7 +55,7 @@ const DoctorSidebar = () => {
         >
             {/* Logo */}
             <div className="flex items-center justify-center p-5">
-            <img src={logo} alt="Logo" className="w-48 h-auto" />
+                <img src={logo} alt="Logo" className="w-48 h-auto" />
             </div>
 
             {/* Menu Items */}
