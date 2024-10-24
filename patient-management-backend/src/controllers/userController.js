@@ -14,6 +14,8 @@ const generateToken = (id, role, firstName, lastName) => {
 // @desc    Register Admin
 // @route   POST /api/auth/register-admin
 // @access  Public
+const hospitalModel = require("../models/hospitalModel");
+
 exports.registerAdmin = async (req, res) => {
   const {
     firstName,
@@ -24,17 +26,23 @@ exports.registerAdmin = async (req, res) => {
     country,
     state,
     city,
-    hospital,
+    hospital, // Assuming hospital ID is passed here
   } = req.body;
 
   try {
+    // Check if the hospital exists
+    const hospitalData = await hospitalModel.findById(hospital);
+    if (!hospitalData) {
+      return res.status(400).json({ message: "Hospital not found" });
+    }
+
     // Check if admin already exists
     const adminExists = await User.findOne({ email });
     if (adminExists) {
       return res.status(400).json({ message: "Admin already exists" });
     }
 
-    // Create new admin
+    // Create new admin with the hospital reference
     const admin = await User.create({
       firstName,
       lastName,
@@ -45,7 +53,7 @@ exports.registerAdmin = async (req, res) => {
       state,
       city,
       role: "admin",
-      doctorDetails: { currentHospital: hospital },
+      adminhospital: hospitalData._id, // Store hospital ID as reference in adminhospital
     });
 
     res.status(201).json({
@@ -60,6 +68,7 @@ exports.registerAdmin = async (req, res) => {
     res.status(500).json({ message: "Server error", error });
   }
 };
+
 
 // @desc    Register Patient
 // @route   POST /api/auth/register-patient
@@ -132,10 +141,10 @@ exports.addDoctorByAdmin = async (req, res) => {
     password,
     qualification,
     specialtyType,
-    workType,
-    workingTime,
-    checkupTime,
-    breakTime,
+    workType,  // New field for work type (Online, Onsite, Both)
+    workingTime,  // Selected working hours
+    checkupTime,  // Selected check-up time
+    breakTime,  // Selected break time
     experience,
     zipCode,
     onlineConsultationRate,
@@ -148,21 +157,25 @@ exports.addDoctorByAdmin = async (req, res) => {
     emergencyContactNumber,
     gender,
     age,
+    description,
   } = req.body;
 
   try {
+    // Check if the doctor already exists
     const doctorExists = await User.findOne({ email });
     if (doctorExists) {
       return res.status(400).json({ message: "Doctor already exists" });
     }
 
-    const profileImage = req.files.profileImage
+    // Handle image uploads for profile and signature (if available)
+    const profileImage = req.files && req.files.profileImage
       ? `uploads/${req.files.profileImage[0].filename}`
       : null;
-    const signatureImage = req.files.signatureImage
+    const signatureImage = req.files && req.files.signatureImage
       ? `uploads/${req.files.signatureImage[0].filename}`
       : null;
 
+    // Create a new doctor
     const doctor = await User.create({
       firstName,
       lastName,
@@ -175,8 +188,12 @@ exports.addDoctorByAdmin = async (req, res) => {
       doctorDetails: {
         qualification,
         specialtyType,
-        workType,
-        workingHours: { workingTime, checkupTime, breakTime },
+        workType,  // Store work type (Online, Onsite, Both)
+        workingHours: {
+          workingTime,  // Store working time
+          checkupTime,  // Store check-up time
+          breakTime,    // Store break time
+        },
         experience: Number(experience),
         zipCode: Number(zipCode),
         onlineConsultationRate: Number(onlineConsultationRate),
@@ -186,6 +203,7 @@ exports.addDoctorByAdmin = async (req, res) => {
           websiteLink,
           emergencyContactNumber,
         },
+        description, // Include description
       },
       gender,
       age: Number(age),
@@ -194,6 +212,7 @@ exports.addDoctorByAdmin = async (req, res) => {
       city,
     });
 
+    // Send a response with the created doctor
     res.status(201).json({
       _id: doctor._id,
       firstName: doctor.firstName,
@@ -205,10 +224,11 @@ exports.addDoctorByAdmin = async (req, res) => {
       signatureImage: doctor.signatureImage,
     });
   } catch (error) {
-    console.error("Validation Error:", error); // Log the full error
+    console.error("Error adding doctor:", error);
     res.status(500).json({ message: "Server error", error });
   }
 };
+
 
 // @desc    Login for Admin, Doctor, Patient
 // @route   POST /api/auth/login
@@ -391,8 +411,13 @@ exports.changePassword = async (req, res) => {
 // @access  Private (Logged in users)
 exports.getUserProfile = async (req, res) => {
   try {
-    // Find user by ID, excluding the password field
-    const user = await User.findById(req.user._id).select("-password");
+    // Find the user and populate the hospital field
+    const user = await User.findById(req.user._id)
+    .select("-password")
+    .populate({
+      path: 'adminhospital', // Populating the hospital reference
+      select: 'name address city state', // Select relevant hospital fields
+    });
 
     if (!user) {
       return res.status(404).json({ message: "User not found" });
@@ -419,6 +444,7 @@ exports.getUserProfile = async (req, res) => {
       bloodGroup: user.bloodGroup,
       dateOfBirth: user.dateOfBirth,
       address: user.address,
+      adminhospital: user.adminhospital,
       // Doctor-specific fields
       doctorDetails: user.doctorDetails,
       createdAt: user.createdAt,
@@ -449,6 +475,7 @@ exports.updateUserProfile = async (req, res) => {
     dateOfBirth,
     address,
     doctorDetails,
+    adminhospital,
   } = req.body;
 
   try {
@@ -467,14 +494,16 @@ exports.updateUserProfile = async (req, res) => {
     if (state !== undefined) user.state = state;
     if (city !== undefined) user.city = city;
 
+
     // Handle image uploads
     if (req.files) {
       if (req.files.profileImage) {
-        user.profileImage = req.files.profile;
-        user.profileImage = req.files.profileImage[0].path; // Storing path for profile image
+        // Store only the relative path
+        user.profileImage = `uploads/${req.files.profileImage[0].filename}`;
       }
       if (req.files.signatureImage) {
-        user.signatureImage = req.files.signatureImage[0].path; // Storing path for signature image
+        // Store only the relative path
+        user.signatureImage = `uploads/${req.files.signatureImage[0].filename}`;
       }
     }
 
@@ -527,9 +556,20 @@ exports.updateUserProfile = async (req, res) => {
       }
     }
 
+    // Admin-specific fields (updating the hospital reference for admin)
+    if (user.role === "admin" && adminhospital !== undefined) {
+      const hospitalData = await hospitalModel.findById(adminhospital);
+
+      if (!hospitalData) {
+        return res.status(404).json({ message: "Hospital not found" });
+      }
+
+      // Update the admin's hospital reference
+      user.adminhospital = hospitalData._id;
+    }
+
     // Save the updated user data
     const updatedUser = await user.save();
-
     // Return updated profile data
     res.status(200).json({
       _id: updatedUser._id,
@@ -551,6 +591,7 @@ exports.updateUserProfile = async (req, res) => {
       dateOfBirth: updatedUser.dateOfBirth,
       address: updatedUser.address,
       doctorDetails: updatedUser.doctorDetails,
+      adminhospital: updatedUser.adminhospital,
     });
   } catch (error) {
     res.status(500).json({ message: "Server error", error });
@@ -630,50 +671,47 @@ exports.editDoctorById = async (req, res) => {
       return res.status(404).json({ message: "Doctor not found" });
     }
 
-    const {
-      firstName,
-      lastName,
-      email,
-      phoneNumber,
-      qualification,
-      specialtyType,
-      checkupTime,
-      breakTime,
-      experience,
-      zipCode,
-      onlineConsultationRate,
-      country,
-      state,
-      city,
-      gender,
-      doctorDetails,
-    } = req.body;
+    // Update doctor fields conditionally
+    doctor.firstName = req.body.firstName || doctor.firstName;
+    doctor.lastName = req.body.lastName || doctor.lastName;
+    doctor.email = req.body.email || doctor.email;
+    doctor.phoneNumber = req.body.phoneNumber || doctor.phoneNumber;
+    doctor.gender = req.body.gender || doctor.gender;
+    doctor.country = req.body.country || doctor.country;
+    doctor.state = req.body.state || doctor.state;
+    doctor.city = req.body.city || doctor.city;
 
-    // Update doctor fields
-    doctor.firstName = firstName || doctor.firstName;
-    doctor.lastName = lastName || doctor.lastName;
-    doctor.email = email || doctor.email;
-    doctor.phoneNumber = phoneNumber || doctor.phoneNumber;
-    doctor.gender = gender || doctor.gender;
-    doctor.country = country || doctor.country;
-    doctor.state = state || doctor.state;
-    doctor.city = city || doctor.city;
+    // Update doctor details if present
+    if (req.body.qualification || req.body.specialtyType) {
+      doctor.doctorDetails.qualification = req.body.qualification || doctor.doctorDetails.qualification;
+      doctor.doctorDetails.specialtyType = req.body.specialtyType || doctor.doctorDetails.specialtyType;
+      doctor.doctorDetails.workType = req.body.workType || doctor.doctorDetails.workType;
+      doctor.doctorDetails.experience = req.body.experience || doctor.doctorDetails.experience;
+      doctor.doctorDetails.onlineConsultationRate = req.body.onlineConsultationRate || doctor.doctorDetails.onlineConsultationRate;
+    }
 
-    // Update doctor details
-    if (doctorDetails) {
-      doctor.doctorDetails.qualification =
-        qualification || doctor.doctorDetails.qualification;
-      doctor.doctorDetails.specialtyType =
-        specialtyType || doctor.doctorDetails.specialtyType;
-      doctor.doctorDetails.experience =
-        experience || doctor.doctorDetails.experience;
-      doctor.doctorDetails.workingHours.checkupTime =
-        checkupTime || doctor.doctorDetails.workingHours.checkupTime;
-      doctor.doctorDetails.workingHours.breakTime =
-        breakTime || doctor.doctorDetails.workingHours.breakTime;
-      doctor.doctorDetails.zipCode = zipCode || doctor.doctorDetails.zipCode;
-      doctor.doctorDetails.onlineConsultationRate =
-        onlineConsultationRate || doctor.doctorDetails.onlineConsultationRate;
+    // Update working hours
+    if (req.body.checkupTime || req.body.breakTime) {
+      doctor.doctorDetails.workingHours.checkupTime = req.body.checkupTime || doctor.doctorDetails.workingHours.checkupTime;
+      doctor.doctorDetails.workingHours.breakTime = req.body.breakTime || doctor.doctorDetails.workingHours.breakTime;
+    }
+
+    // Update hospital details
+    if (req.body.hospitalName || req.body.hospitalAddress) {
+      doctor.doctorDetails.hospital.hospitalName = req.body.hospitalName || doctor.doctorDetails.hospital.hospitalName;
+      doctor.doctorDetails.hospital.hospitalAddress = req.body.hospitalAddress || doctor.doctorDetails.hospital.hospitalAddress;
+      doctor.doctorDetails.hospital.emergencyContactNumber = req.body.emergencyContact || doctor.doctorDetails.hospital.emergencyContactNumber;
+      doctor.doctorDetails.hospital.websiteLink = req.body.hospitalWebsite || doctor.doctorDetails.hospital.websiteLink;
+    }
+
+    // Handle image uploads
+    if (req.files) {
+      if (req.files.profileImage) {
+        doctor.profileImage = req.files.profileImage[0].path; // Save profile image path
+      }
+      if (req.files.signatureImage) {
+        doctor.signatureImage = req.files.signatureImage[0].path; // Save signature image path
+      }
     }
 
     const updatedDoctor = await doctor.save();
@@ -682,6 +720,7 @@ exports.editDoctorById = async (req, res) => {
     res.status(500).json({ message: "Server error", error });
   }
 };
+
 // @desc    Get Patient by ID
 // @route   GET /api/users/patients/:id
 // @access  Private (Admin only)
@@ -704,10 +743,10 @@ exports.getPatientById = async (req, res) => {
 exports.editPatientById = async (req, res) => {
   try {
     const patient = await User.findById(req.params.id).where({
-      role: "patient",
+      role: 'patient',
     });
     if (!patient) {
-      return res.status(404).json({ message: "Patient not found" });
+      return res.status(404).json({ message: 'Patient not found' });
     }
 
     const {
@@ -743,12 +782,19 @@ exports.editPatientById = async (req, res) => {
     patient.city = city || patient.city;
     patient.address = address || patient.address;
 
+    // Check if a file has been uploaded
+    if (req.file) {
+      // Store only the relative path to the file
+      patient.profileImage = `uploads/${req.file.filename}`;
+    }
+
     const updatedPatient = await patient.save();
     res.status(200).json(updatedPatient);
   } catch (error) {
-    res.status(500).json({ message: "Server error", error });
+    res.status(500).json({ message: 'Server error', error });
   }
 };
+
 // @desc    Delete Patient by ID
 // @route   DELETE /api/users/patients/:id
 // @access  Private (Admin only)

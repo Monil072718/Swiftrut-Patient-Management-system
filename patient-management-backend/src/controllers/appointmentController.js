@@ -35,7 +35,20 @@ exports.createAppointment = async (req, res) => {
       return res.status(404).json({ message: "Doctor not found or not valid" });
     }
 
-    // Create the appointment
+    // Check for conflicting appointments (same doctor, same date, and overlapping time)
+    const existingAppointment = await Appointment.findOne({
+      doctor: doctor,  // Same doctor
+      appointmentDate: appointmentDate,  // Same date
+      appointmentTime: appointmentTime  // Same time slot
+    });
+
+    if (existingAppointment) {
+      return res.status(400).json({
+        message: "The selected time slot is already booked for this doctor.",
+      });
+    }
+
+    // If no conflict, create the appointment
     const newAppointment = await Appointment.create({
       patient: req.user._id,
       specialty,
@@ -70,6 +83,9 @@ exports.createAppointment = async (req, res) => {
 // @desc    Get All Appointments
 // @route   GET /api/appointments
 // @access  Private (Patients only)
+// @desc    Get All Appointments for the logged-in patient
+// @route   GET /api/appointments
+// @access  Private (Patients only)
 exports.getAllAppointments = async (req, res) => {
   try {
     const appointments = await Appointment.find()
@@ -99,9 +115,9 @@ exports.getAllAppointments = async (req, res) => {
           : "N/A",
         patientAge: appointment.patient ? appointment.patient.age : "N/A",
         patientGender: appointment.patient ? appointment.patient.gender : "N/A",
-        patientIssue: appointment.patient
-          ? appointment.patient.patientIssue
-          : "N/A",
+        patientIssue: appointment.patientIssue,
+          //  ? appointment.patient.age
+          //  : "N/A",
         diseaseName: appointment.diseaseName,
         doctorId: appointment.doctor ? appointment.doctor._id : null, // Add doctor ID to the response
         patientId: appointment.patient ? appointment.patient._id : null,
@@ -230,6 +246,9 @@ exports.rescheduleAppointment = async (req, res) => {
 // @desc    Cancel Appointment
 // @route   PATCH /api/appointments/cancel/:id
 // @access  Private
+// @desc    Cancel Appointment
+// @route   PATCH /api/appointments/cancel/:id
+// @access  Private
 exports.cancelAppointment = async (req, res) => {
   const { id } = req.params;
 
@@ -250,6 +269,97 @@ exports.cancelAppointment = async (req, res) => {
       data: appointment,
     });
   } catch (error) {
+    res.status(500).json({ message: "Server error", error });
+  }
+};
+
+
+// @desc    Get all booked appointments for a doctor on a given date
+// @route   GET /api/appointments/booked/:doctorId/:date
+// @access  Private
+exports.getDoctorAppointmentsByDate = async (req, res) => {
+  const { doctorId, date } = req.params;
+
+  try {
+    // Find all appointments for the doctor on the selected date
+    const appointments = await Appointment.find({
+      doctor: doctorId,
+      appointmentDate: new Date(date),  // Ensure correct date format
+    }).select("appointmentTime");
+
+    res.status(200).json({
+      success: true,
+      bookedSlots: appointments.map((a) => a.appointmentTime),
+    });
+  } catch (error) {
+    console.error("Error fetching doctor's appointments:", error);
+    res.status(500).json({ message: "Server error", error });
+  }
+};
+
+
+// @desc    Get booked slots for a specific doctor on a particular date
+// @route   GET /api/appointments/booked/:doctorId/:date
+// @access  Private (for fetching booked slots for appointment booking)
+exports.getBookedSlots = async (req, res) => {
+  const { doctorId } = req.params; // We don't need to pass a specific date
+
+  try {
+    // Find all appointments for the doctor
+    const appointments = await Appointment.find({
+      doctor: doctorId,
+      status: "Pending", // Only consider appointments that are pending
+    }).select("appointmentDate appointmentTime");
+
+    // Group booked slots by date
+    const bookedSlotsByDate = {};
+
+    appointments.forEach(appointment => {
+      const dateKey = appointment.appointmentDate.toISOString().split('T')[0]; // Convert to YYYY-MM-DD format
+      if (!bookedSlotsByDate[dateKey]) {
+        bookedSlotsByDate[dateKey] = [];
+      }
+      bookedSlotsByDate[dateKey].push(appointment.appointmentTime);
+    });
+
+    // Return the grouped booked slots
+    res.status(200).json({
+      success: true,
+      bookedSlots: bookedSlotsByDate, // Slots grouped by date
+    });
+  } catch (error) {
+    console.error("Error fetching booked slots:", error);
+    res.status(500).json({ message: "Error fetching booked slots", error });
+  }
+};
+
+// @desc    Update appointment status
+// @route   PATCH /api/appointments/:id
+// @access  Private
+exports.updateAppointmentStatus = async (req, res) => {
+  const { id } = req.params;
+  const { status } = req.body; // Status will be passed in the request body
+
+  try {
+    // Find the appointment by ID
+    const appointment = await Appointment.findById(id);
+
+    if (!appointment) {
+      return res.status(404).json({ message: "Appointment not found" });
+    }
+
+    // Update the appointment status
+    appointment.status = status || appointment.status;
+
+    await appointment.save();
+
+    res.status(200).json({
+      success: true,
+      message: "Appointment status updated successfully",
+      data: appointment,
+    });
+  } catch (error) {
+    console.error("Error updating appointment status:", error);
     res.status(500).json({ message: "Server error", error });
   }
 };
