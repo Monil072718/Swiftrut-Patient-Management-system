@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
 // import { useBreadcrumb } from "../../context/BreadcrumbContext";
 import { FaEye, FaSearch } from "react-icons/fa";
-import PatientSidebar from "./PatientSidebar";
-import PatientNavbar from "./PatientNavbar";
+import PatientSidebar from "../../components/Patients/PatientSidebar";
+import PatientNavbar from "../../components/Patients/PatientNavbar";
 
 const TestReportPage = () => {
     //   const { updateBreadcrumb } = useBreadcrumb();

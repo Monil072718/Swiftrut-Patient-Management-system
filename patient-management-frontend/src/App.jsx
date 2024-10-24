@@ -1,6 +1,5 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Navbar from './components/shared/Navbar';
 import Login from './components/AdminPanel/auth/Login';
 import Signup from './components/AdminPanel/auth/Signup';
 import ForgotPassword from './components/AdminPanel/auth/ForgotPassword';
@@ -29,25 +28,29 @@ import Reporting from './components/AdminPanel/BillingAndPayment/Reporting';
 import OtpVerification from './components/AdminPanel/auth/OtpVerification';
 
 
-// import './styles/Navbar.css'; // Import the Navbar CSS
 import PatientAppointment from './components/Patients/PatientAppointment';
-import PatientEditProfile from './components/Patients/PatientEditProfile';
-import PrescriptionPage from './components/Patients/PrescriptionPage';
-import TestReportPage from './components/Patients/TestReportPage';
+import PatientEditProfile from '../src/pages/patientPages/PatientEditProfile';
+import PrescriptionPage from '../src/pages/patientPages/PrescriptionPage';
+import TestReportPage from '../src/pages/patientPages/TestReportPage';
 import MedicalHistory from './components/Patients/MedicalHistory';
-import AppointmentBookingPage from './components/Patients/AppointmentBookingPage';
-import PrescriptionAccessPage from './components/Patients/PrescriptionAccessPage';
+import AppointmentBookingPage from '../src/pages/patientPages/AppointmentBookingPage';
+import PrescriptionAccessPage from '../src/pages/patientPages/PrescriptionAccessPage';
 import DoctorProfile from './components/DoctorPanel/DoctorProfile';
 import DoctorEditProfile from './components/DoctorPanel/DoctorEditProfile';
 import DoctorChangePassword from './components/DoctorPanel/DoctorChangePassword';
 import DoctorTerms from './components/DoctorPanel/DoctorTerms';
 import DoctorPrivacy from './components/DoctorPanel/DoctorPrivacy';
 import AppoinmentManagement from './components/DoctorPanel/AppoinmentManagement';
-import TeleAccess from './components/Patients/TeleAccess';
+import TeleAccess from '../src/pages/patientPages/TeleAccess';
 import AppoinmentTimeSlot from './components/DoctorPanel/AppoinmentTimeSlot';
 import PatientRecord from './components/DoctorPanel/PatientRecord';
-import ChatPage from './components/Patients/ChatPage';
-import BillsPage from './components/Patients/BillsPage';
+import ChatPage from '../src/pages/patientPages/ChatPage';
+import BillsPage from './pages/patientPages/BillsPage';
+import BookAppointment from './pages/patientPages/BookAppointment';
+import MedicalHistoryPage from './pages/patientPages/MedicalHistoryPage';
+import PatientDashboard from './pages/patientPages/PatientDashboard';
+import PatientProfile from './pages/patientPages/PatientProfile';
+import RescheduleAppointment from './pages/patientPages/RescheduleAppointment';
 
 
 function App() {
@@ -110,6 +113,11 @@ function App() {
         <Route path='/patient' element={<Patient />} />
         <Route path='/chat' element={<ChatPage />} />
         <Route path='/bills' element={<BillsPage />} />
+        <Route path='/patient-book' element={<BookAppointment />} />
+        <Route path='/medical-history-patient' element={<MedicalHistoryPage />} />
+        <Route path='/patient-dashboard' element={<PatientDashboard />} />
+        <Route path='/patient-profilepage' element={<PatientProfile />} />
+        <Route path='/patient-reschedule' element={<RescheduleAppointment />} />
 
       </Routes>
     </Router>

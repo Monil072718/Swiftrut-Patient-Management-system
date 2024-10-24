@@ -1,21 +1,12 @@
 import React, { useState, useEffect } from "react";
-// import { useBreadcrumb } from "../../context/BreadcrumbContext";
 import { FaCalendarAlt, FaTrashAlt, FaRedoAlt, FaEye } from "react-icons/fa";
-import PatientSidebar from "./PatientSidebar";
-import PatientNavbar from "./PatientNavbar";
-// import DoctorDetailsSidebar from "../../components/Patient/DoctorDetailsSidebar";
+import PatientSidebar from "../../components/Patients/PatientSidebar";
+import PatientNavbar from "../../components/Patients/PatientNavbar";
 
 const AppointmentBookingPage = () => {
-    //   const { updateBreadcrumb } = useBreadcrumb();
     const [activeTab, setActiveTab] = useState("Scheduled");
     const [selectedDoctor, setSelectedDoctor] = useState(null);
     const [isSidebarVisible, setIsSidebarVisible] = useState(false);
-
-    //   useEffect(() => {
-    //     updateBreadcrumb([
-    //       { label: "Appointment Booking", path: "/patient/appointment-booking" },
-    //     ]);
-    //   }, [updateBreadcrumb]);
 
     const appointments = [
         {
@@ -30,9 +21,8 @@ const AppointmentBookingPage = () => {
             date: "2 Jan, 2022",
             time: "10:20 AM",
             issue: "Feeling Tired",
-            status: "Scheduled",
+            status: "Scheduled",  // Use 'status' instead of 'type'
         },
-        // Additional appointment objects...
     ];
 
     const filteredAppointments = appointments.filter(
@@ -93,9 +83,9 @@ const AppointmentBookingPage = () => {
                                 <div className="p-4 text-sm text-gray-700 space-y-1">
                                     <p className="flex justify-between items-center text-yellow-500 pb-2">
                                         <span className="font-semibold text-gray-500">
-                                            Appointment Type
+                                            Appointment Status
                                         </span>{" "}
-                                        {appointment.type}
+                                        {appointment.status}
                                     </p>
                                     <p className="flex justify-between items-center pb-2">
                                         <span className="font-semibold text-gray-500">
@@ -109,14 +99,6 @@ const AppointmentBookingPage = () => {
                                         </span>{" "}
                                         {appointment.date}
                                     </p>
-                                    {appointment.status === "Canceled" && (
-                                        <p className="flex justify-between items-center pb-2">
-                                            <span className="font-semibold text-gray-500">
-                                                Cancel Date
-                                            </span>{" "}
-                                            {appointment.cancelDate}
-                                        </p>
-                                    )}
                                     <p className="flex justify-between items-center pb-2">
                                         <span className="font-semibold text-gray-500">
                                             Appointment Time
@@ -149,15 +131,6 @@ const AppointmentBookingPage = () => {
                             </div>
                         ))}
                     </div>
-
-                    {/* Doctor Details Sidebar */}
-                    {/* {selectedDoctor && (
-        <DoctorDetailsSidebar
-          doctor={selectedDoctor}
-          isVisible={isSidebarVisible}
-          onClose={() => setIsSidebarVisible(false)}
-        />
-      )} */}
                 </div>
             </div>
         </div>

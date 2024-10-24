@@ -1,7 +1,7 @@
 import React from 'react'
 import { FaSearch, FaCalendarAlt, FaVideo, FaPhoneAlt } from 'react-icons/fa';
-import PatientSidebar from './PatientSidebar'
-import PatientNavbar from './PatientNavbar'
+import PatientSidebar from "../../components/Patients/PatientSidebar";
+import PatientNavbar from "../../components/Patients/PatientNavbar";
 import calendar from '../../assets/images/calendar.png';
 import eye1 from '../../assets/images/eye1.png';
 import calender_black from '../../assets/images/calendar_black.png'; 

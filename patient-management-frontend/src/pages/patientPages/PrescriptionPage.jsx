@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { FaEye, FaSearch } from "react-icons/fa";
-import PatientSidebar from "./PatientSidebar";
-import PatientNavbar from "./PatientNavbar";
+import PatientSidebar from "../../components/Patients/PatientSidebar";
+import PatientNavbar from "../../components/Patients/PatientNavbar";
 // import { useBreadcrumb } from "../../context/BreadcrumbContext";
-import PrescritionModal from "../Patients/PrescritionModal";
+import PrescritionModal from "../../components/Patients/PrescritionModal";
 
 const PrescriptionPage = () => {
     //   const { updateBreadcrumb } = useBreadcrumb();

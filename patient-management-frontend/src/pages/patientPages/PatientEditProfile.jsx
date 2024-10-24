@@ -4,8 +4,8 @@ import { FiCamera } from "react-icons/fi";
 import Navbar from '../../components/Comman/Navbar';
 import Sidebar from '../../components/Comman/Sidebar';
 import char_3 from '../../assets/images/char_3.png';
-import PatientSidebar from './PatientSidebar';
-import PatientNavbar from './PatientNavbar';
+import PatientSidebar from "../../components/Patients/PatientSidebar";
+import PatientNavbar from "../../components/Patients/PatientNavbar";
 
 const PatientEditProfile = () => {
 

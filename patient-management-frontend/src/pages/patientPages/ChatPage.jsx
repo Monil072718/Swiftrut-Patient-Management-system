@@ -4,8 +4,8 @@ import { FaSearch } from "react-icons/fa";
 import Profile_2 from '../../assets/images/Profile_2.png';
 import chats3 from '../../assets/images/chats3.png';
 import chatIcon from '../../assets/images/chat-icon.png';
-import PatientSidebar from "./PatientSidebar";
-import PatientNavbar from "./PatientNavbar";
+import PatientSidebar from "../../components/Patients/PatientSidebar";
+import PatientNavbar from "../../components/Patients/PatientNavbar";
 
 const ChatPage = () => {
     const [selectedChat, setSelectedChat] = useState(null);

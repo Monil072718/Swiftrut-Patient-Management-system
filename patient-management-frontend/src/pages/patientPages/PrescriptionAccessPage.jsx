@@ -9,8 +9,8 @@ import {
 // import { useBreadcrumb } from "../../context/BreadcrumbContext";
 import logo from "../../assets/images/logo.png";
 import PrescritionModal from "../../components/Patients/PrescritionModal";
-import PatientSidebar from "./PatientSidebar";
-import PatientNavbar from "./PatientNavbar";
+import PatientSidebar from "../../components/Patients/PatientSidebar";
+import PatientNavbar from "../../components/Patients/PatientNavbar";
 
 const PrescriptionAccessPage = () => {
     //   const { updateBreadcrumb } = useBreadcrumb();

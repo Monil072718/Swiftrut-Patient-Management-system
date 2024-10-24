@@ -1,13 +1,11 @@
-import React from 'react'
+import React from 'react';
 import { FaEdit, FaEye } from 'react-icons/fa';
-import Sidebar from '../shared/Sidebar';
-import Navbar from '../shared/Navbar';
+import PatientSidebar from "../../components/Patients/PatientSidebar";
+import PatientNavbar from "../../components/Patients/PatientNavbar";
 import { Link } from 'react-router-dom';
 import { FaHospital, FaUserMd, FaCalendarAlt, FaInfoCircle, FaUsers } from "react-icons/fa";
 
 const PatientAppointment = () => {
-
-
 
     const history = [
         {
@@ -56,16 +54,6 @@ const PatientAppointment = () => {
             date: "2 Jan, 2022",
             disease: "Colds and Flu",
         },
-        {
-            hospital: "Narayana Health",
-            date: "2 Jan, 2022",
-            disease: "Colds and Flu",
-        },
-        {
-            hospital: "Narayana Health",
-            date: "2 Jan, 2022",
-            disease: "Colds and Flu",
-        },
     ];
 
     const reports = [
@@ -81,20 +69,7 @@ const PatientAppointment = () => {
             disease: "Allergies",
             test: "Pathology Test",
         },
-        {
-            doctor: "Dr. Zaire Saris",
-            date: "2 Jan, 2022",
-            disease: "Viral Infection",
-            test: "Pathology Test",
-        },
-        {
-            doctor: "Dr. Jaxson Herwitz",
-            date: "2 Jan, 2022",
-            disease: "Allergies",
-            test: "Pathology Test",
-        },
     ];
-
 
     const status = {
         hospital: "Shamuba Hospital",
@@ -107,12 +82,12 @@ const PatientAppointment = () => {
     return (
         <div className="flex h-screen">
             {/* Sidebar */}
-            <Sidebar />
+            <PatientSidebar />
 
             {/* Main Content */}
             <div className="flex-1 flex flex-col">
                 {/* Top Navbar */}
-                <Navbar />
+                <PatientNavbar currentPage="Profile Setting" />
                 <div className="main">
                     <div className="p-8 space-y-8">
                         {/* Patient Details */}
@@ -126,7 +101,7 @@ const PatientAppointment = () => {
                                 </Link>
                             </div>
 
-                            <div className=" flex justify-between items-start">
+                            <div className="flex justify-between items-start">
                                 {/* Patient Image */}
                                 <div className="flex-shrink-0">
                                     <img
@@ -177,8 +152,7 @@ const PatientAppointment = () => {
                                             <p className="text-gray-400">City</p> Ahmedabad
                                         </div>
                                         <div className="col-span-2 font-semibold leading-5">
-                                            <p className="text-gray-400">Address</p> B-408, Swastik Society,
-                                            Mota Varacha, Rajkot
+                                            <p className="text-gray-400">Address</p> B-408, Swastik Society, Mota Varacha, Rajkot
                                         </div>
                                     </div>
                                 </div>
@@ -187,28 +161,18 @@ const PatientAppointment = () => {
 
                         {/* Medical History */}
                         <div className="grid grid-cols-8 gap-6 flex-1">
-                            <div className='col-span-5 flex flex-col'>
+                            <div className="col-span-5 flex flex-col">
                                 <div className="bg-white p-6 rounded-lg shadow-lg mt-6">
                                     <div className="flex justify-between items-center mb-4">
                                         <h2 className="text-xl font-semibold">Medical History</h2>
-                                        <a
-                                            href="#"
-                                            className="text-blue-600 hover:underline"
-
-                                        >
-                                            View All History
-                                        </a>
+                                        <a href="#" className="text-blue-600 hover:underline">View All History</a>
                                     </div>
 
                                     {/* Horizontal Scrollable Container */}
                                     <div className="overflow-x-auto">
                                         <div className="flex space-x-4 w-full max-w-full overflow-x-auto custom-scroll">
                                             {history.map((record, index) => (
-                                                <div
-                                                    key={index}
-                                                    className="min-w-[300px] max-w-[300px] bg-white rounded-lg shadow-md border mb-4"
-                                                >
-
+                                                <div key={index} className="min-w-[300px] max-w-[300px] bg-white rounded-lg shadow-md border mb-4">
                                                     {/* Gray Header with Name and Date */}
                                                     <div className="bg-gray-100 px-4 py-2 rounded-t-lg">
                                                         <h4 className="font-semibold text-customBlue">{record.name}</h4>
@@ -218,9 +182,7 @@ const PatientAppointment = () => {
                                                     {/* Patient Issue and Description */}
                                                     <div className="p-4">
                                                         <p className="font-semibold">{record.issue}</p>
-                                                        <p className="mt-2 text-gray-600 text-sm">
-                                                            {record.description}
-                                                        </p>
+                                                        <p className="mt-2 text-gray-600 text-sm">{record.description}</p>
                                                     </div>
                                                 </div>
                                             ))}
@@ -230,21 +192,15 @@ const PatientAppointment = () => {
                             </div>
 
                             {/* Prescriptions */}
-                            <div className='col-span-3 flex flex-col'>
+                            <div className="col-span-3 flex flex-col">
                                 <div className="bg-white p-6 rounded-lg shadow-lg mt-6">
                                     <div className="flex justify-between items-center mb-4">
                                         <h2 className="text-xl font-semibold">Prescriptions</h2>
-                                        <a
-                                            href="#"
-                                            className="text-blue-600 hover:underline"
-
-                                        >
-                                            View All Prescription
-                                        </a>
+                                        <a href="#" className="text-blue-600 hover:underline">View All Prescription</a>
                                     </div>
 
                                     {/* Scrollable container for the table body */}
-                                    <div className="rounded-xl overflow-hidden ">
+                                    <div className="rounded-xl overflow-hidden">
                                         <table className="w-full text-left">
                                             <thead>
                                                 <tr className="bg-gray-100">
@@ -287,13 +243,7 @@ const PatientAppointment = () => {
                                     {/* Heading and View All link */}
                                     <div className="flex justify-between items-center mb-4 border-b-2 pb-2">
                                         <h2 className="text-xl font-semibold">Test Reports</h2>
-                                        <a
-                                            href="#"
-                                            className="text-blue-600 hover:underline"
-
-                                        >
-                                            View All Test
-                                        </a>
+                                        <a href="#" className="text-blue-600 hover:underline">View All Test</a>
                                     </div>
 
                                     {/* Scrollable container for reports */}
@@ -306,8 +256,7 @@ const PatientAppointment = () => {
                                                         <div className="flex justify-between align-middle items-center">
                                                             <div className="mr-4 flex mb-1">
                                                                 <img
-                                                                    src={`https://randomuser.me/api/portraits/men/${index + 30
-                                                                        }.jpg`}
+                                                                    src={`https://randomuser.me/api/portraits/men/${index + 30}.jpg`}
                                                                     alt={report.doctor}
                                                                     className="w-12 h-12 rounded-full mr-2"
                                                                 />
@@ -393,7 +342,7 @@ const PatientAppointment = () => {
                 </div>
             </div>
         </div>
-    )
+    );
 }
 
-export default PatientAppointment
+export default PatientAppointment;
